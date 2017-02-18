@@ -9,6 +9,24 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
 
+## Serving using Node.js
+
+The project was intended to use an existing `node.js` setup to handle the backend work. Setting this up was a little trickier than what I would have liked.
+
+I followed the instructions from [setup-angular-2-nodejs-structure-angular-cli-expres](http://www.javascripthtml.com/setup-angular-2-nodejs-structure-angular-cli-express/) to set up the Node server
+
+As the standard NG-2 CLI process uses Webpack to (emulate)? the application with creating a directory structure for Development I had to make a structure which uses Production.
+
+The following commands create the build files in a `dist` directory and serves the app to `http://localhost:3000/`
+  
+```
+ng build
+
+npm run serve
+
+```
+ 
+
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
