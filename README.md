@@ -25,6 +25,21 @@ ng build
 npm run serve
 
 ```
+
+## Tasks
+
+Initial Set up
+
+1. Add SASS style
+
+1. Add global styles and reset
+
+1. The initial node backend and initial ng2 will be set up
+
+
+* [ ] Add customer Component
+
+
  
 
 ## Build
