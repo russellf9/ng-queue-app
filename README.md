@@ -36,11 +36,26 @@ Initial Set up
 
 1. The initial node backend and initial ng2 will be set up
 
+1. Set up styling to read
 
-* [ ] Add customer Component
 
+* [X] Add Customer Component
 
- 
+* [X] Add services to call HTTP
+
+* [ ] Add collection of Customers
+
+* [ ] Add action to Serve Customer
+
+* [ ] Add action to Add Customer to the Queue
+
+* [ ] Add a Watch to the build prod task
+
+* [ ] Make specific Object types - is Customer type and cast response as thet type
+
+##
+
+Bases on the [Qudini Code Test](https://github.com/qudini/front-end-test}
 
 ## Build
 
