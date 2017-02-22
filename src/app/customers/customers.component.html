@@ -1,5 +1,6 @@
-<div>
-  <app-customer
+<div class="ui segment">
+  <h2 class="ui header">Customers</h2>
+  <app-customer class="ui cards"
     *ngFor="let customer of customers"
     [name]="customer.name"
     [product]="customer.product">

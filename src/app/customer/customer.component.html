@@ -1,9 +1,20 @@
 <div class="ui card">
   <div class="content">
-    <div class="header"><h1>Customer</h1></div>
+    <img class="right floated mini ui image" src="/assets/images/avatar/large/elliot.jpg">
+    <div class="header">
+      {{name}}
+    </div>
+    <div class="meta">
+      <span>Someone in the Queue!</span>
+    </div>
     <div class="description">
-      <p>name: {{name}}</p>
-      <p>product: {{product.name}}</p>
+      <p>{{product.name}}</p>
+    </div>
+    <div class="extra content">
+      <div class="ui two buttons">
+        <div class="ui basic green button">Serve</div>
+        <div class="ui basic red button">Push Back</div>
+      </div>
     </div>
   </div>
 </div>

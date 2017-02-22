@@ -18,6 +18,11 @@ I followed the instructions from [setup-angular-2-nodejs-structure-angular-cli-e
 As the standard NG-2 CLI process uses Webpack to (emulate)? the application with creating a directory structure for Development I had to make a structure which uses Production.
 
 The following commands create the build files in a `dist` directory and serves the app to `http://localhost:3000/`
+
+
+## Notes
+
+I'm using [Semantic UI](http://semantic-ui.com/) as I having some issues using Bootstrap and it is the same CSS framewoek as used in the NG-2 book.
   
 ```
 ng build
@@ -43,7 +48,7 @@ Initial Set up
 
 * [X] Add services to call HTTP
 
-* [ ] Add collection of Customers
+* [X] Add collection of Customers
 
 * [ ] Add action to Serve Customer
 
@@ -52,6 +57,8 @@ Initial Set up
 * [ ] Add a Watch to the build prod task
 
 * [ ] Make specific Object types - is Customer type and cast response as thet type
+
+* [ ] Add tests
 
 ##
 
