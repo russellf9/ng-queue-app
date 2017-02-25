@@ -2,17 +2,19 @@ import {
   Component,
   Input,
   Output,
-  EventEmitter,
-  OnInit
+  EventEmitter
 } from '@angular/core';
-import {Http, Response, Headers, RequestOptions} from '@angular/http';
+
+import { CustomerService } from './customer.service';
 
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.scss']
+  styleUrls: ['./customer.component.scss'],
+  providers: [ CustomerService ]
 })
-export class CustomerComponent implements OnInit {
+
+export class CustomerComponent  {
 
   @Input() id:string;
   @Input() name:string;
@@ -22,7 +24,7 @@ export class CustomerComponent implements OnInit {
 
   loading:Boolean;
 
-  constructor(private http:Http) {
+  constructor( private customerService : CustomerService ) {
   }
 
   update():void {
@@ -32,19 +34,12 @@ export class CustomerComponent implements OnInit {
   remove() {
     this.loading = true;
 
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers});
-    let body = JSON.stringify({'id': this.id});
-
-    return this.http.post('/api/customer/remove', body, options)
-      .subscribe((result:Response) => {
+    this.customerService.deleteCustomer(this.id)
+      .subscribe(() => {
         this.loading = false;
         this.update();
       });
   }
-
-
-  ngOnInit() {
-  }
 }
+
 

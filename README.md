@@ -33,6 +33,10 @@ npm run serve
 
 ```
 
+## Use the Angular CLI!
+
+For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com/ultimate-angular-cli-reference/)
+
 ## Tasks
 
 Initial Set up
@@ -52,7 +56,9 @@ Initial Set up
 
 * [X] Add collection of Customers
 
-* [ ] Add action to Delete Customer
+* [X] Add action to Delete Customer
+
+* [ ] Move $http requests to a Service
 
 
 * [ ] Add action to Serve Customer

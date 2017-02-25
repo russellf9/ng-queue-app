@@ -53,6 +53,8 @@ app.get('/api/customers', function(req,res){
 app.get('/api/customers/served', function(req,res){
   res.send(servedCustomers);
 });
+
+
 app.post('/api/customer/add', function(req,res){
   addCustomer(req.body);
   res.end('Customer was added!');
