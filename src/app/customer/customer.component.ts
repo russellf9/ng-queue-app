@@ -19,6 +19,8 @@ export class CustomerComponent  {
   @Input() id:string;
   @Input() name:string;
   @Input() product:Object;
+  @Input() notes:string;
+  @Input() status:string;
 
   @Output() onUpdate = new EventEmitter();
 

@@ -5,13 +5,13 @@
       {{name}}
     </div>
     <div class="meta">
-      <span>{{ id }}</span>
+      <span>{{ status }}</span>
     </div>
     <div class="description">
       <p>{{product.name}}</p>
     </div>
     <div class="extra content">
-      <div class="ui two buttons">
+      <div class="ui two buttons" *ngIf="status !== 'served'">
         <div class="ui basic green button" (click)="serve()">Serve</div>
         <div class="ui basic red button" (click)="remove()">Remove</div>
       </div>

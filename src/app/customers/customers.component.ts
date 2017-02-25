@@ -29,6 +29,7 @@ export class CustomersComponent implements OnInit {
   }
 
 
+  //noinspection JSUnusedGlobalSymbols
   ngOnInit() {
    this.makeRequest();
   }
