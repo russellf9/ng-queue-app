@@ -1,6 +1,6 @@
-<div class="ui segment">
+<div class="ui segment segment--customers">
   <h2 class="ui header">Customers</h2>
-  <app-customer class="ui cards"
+  <app-customer class="ui cards cards--customers"
                 *ngFor="let customer of customers"
                 [id]="customer.id"
                 [name]="customer.name"
@@ -8,4 +8,3 @@
                 (onUpdate)="onUpdate($event)">
   </app-customer>
 </div>
-

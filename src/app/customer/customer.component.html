@@ -1,4 +1,4 @@
-<div class="ui card">
+<div class="ui card card--customer">
   <div class="content">
     <img class="right floated mini ui image" src="/assets/images/avatar/large/elliot.jpg">
     <div class="header">
@@ -12,7 +12,7 @@
     </div>
     <div class="extra content">
       <div class="ui two buttons">
-        <div class="ui basic green button">Serve</div>
+        <div class="ui basic green button" (click)="serve()">Serve</div>
         <div class="ui basic red button" (click)="remove()">Remove</div>
       </div>
     </div>

@@ -58,10 +58,12 @@ Initial Set up
 
 * [X] Add action to Delete Customer
 
-* [ ] Move $http requests to a Service
+* [X] Move $http requests to a Service
 
 
 * [ ] Add action to Serve Customer
+
+* [ ] Using Observables with RxJS to get update!
 
 * [ ] Add action to Add Customer to the Queue
 

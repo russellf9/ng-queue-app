@@ -27,8 +27,18 @@ export class CustomerComponent  {
   constructor( private customerService : CustomerService ) {
   }
 
-  update():void {
+  callUpdate():void {
     this.onUpdate.emit();
+  }
+
+  serve() {
+    this.loading = true;
+
+    this.customerService.serveCustomer(this.id)
+      .subscribe(() => {
+        this.loading = false;
+        this.callUpdate()
+      })
   }
 
   remove() {
@@ -37,7 +47,7 @@ export class CustomerComponent  {
     this.customerService.deleteCustomer(this.id)
       .subscribe(() => {
         this.loading = false;
-        this.update();
+        this.callUpdate();
       });
   }
 }

@@ -4,16 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { CustomerService} from './customer/customer.service';
+import { CustomersServedService }  from './customers-served/customers-served.service';
 
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CustomersComponent } from './customers/customers.component';
+import { CustomersServed } from './customers-served/customers-served.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerComponent,
-    CustomersComponent
+    CustomersComponent,
+    CustomersServed
   ],
   imports: [
     BrowserModule,
@@ -21,7 +24,8 @@ import { CustomersComponent } from './customers/customers.component';
     HttpModule
   ],
   providers: [
-    CustomerService
+    CustomerService,
+    CustomersServedService
   ],
   bootstrap: [AppComponent]
 })

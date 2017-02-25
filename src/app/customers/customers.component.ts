@@ -4,7 +4,8 @@ import {Http, Response} from '@angular/http';
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.scss']
+  styleUrls: ['./../app.component.scss',
+            './customers.component.scss']
 })
 export class CustomersComponent implements OnInit {
 
@@ -29,7 +30,7 @@ export class CustomersComponent implements OnInit {
 
 
   ngOnInit() {
-    this.makeRequest();
+   this.makeRequest();
   }
 
 }
