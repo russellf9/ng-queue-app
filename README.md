@@ -23,6 +23,8 @@ The following commands create the build files in a `dist` directory and serves t
 ## Notes
 
 I'm using [Semantic UI](http://semantic-ui.com/) as I having some issues using Bootstrap and it is the same CSS framewoek as used in the NG-2 book.
+
+Based on the [Qudini Front End Test](https://github.com/qudini/front-end-test}
   
 ```
 ng build
@@ -49,6 +51,9 @@ Initial Set up
 * [X] Add services to call HTTP
 
 * [X] Add collection of Customers
+
+* [ ] Add action to Delete Customer
+
 
 * [ ] Add action to Serve Customer
 

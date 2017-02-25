@@ -23,6 +23,10 @@ export class CustomersComponent implements OnInit {
       });
   }
 
+  onUpdate() {
+    this.makeRequest();
+  }
+
 
   ngOnInit() {
     this.makeRequest();

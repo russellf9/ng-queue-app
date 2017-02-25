@@ -1,9 +1,11 @@
 <div class="ui segment">
   <h2 class="ui header">Customers</h2>
   <app-customer class="ui cards"
-    *ngFor="let customer of customers"
-    [name]="customer.name"
-    [product]="customer.product">
+                *ngFor="let customer of customers"
+                [id]="customer.id"
+                [name]="customer.name"
+                [product]="customer.product"
+                (onUpdate)="onUpdate($event)">
   </app-customer>
 </div>
 

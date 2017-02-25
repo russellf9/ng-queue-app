@@ -5,7 +5,7 @@
       {{name}}
     </div>
     <div class="meta">
-      <span>Someone in the Queue!</span>
+      <span>{{ id }}</span>
     </div>
     <div class="description">
       <p>{{product.name}}</p>
@@ -13,7 +13,7 @@
     <div class="extra content">
       <div class="ui two buttons">
         <div class="ui basic green button">Serve</div>
-        <div class="ui basic red button">Push Back</div>
+        <div class="ui basic red button" (click)="remove()">Remove</div>
       </div>
     </div>
   </div>
