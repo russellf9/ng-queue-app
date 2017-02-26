@@ -11,12 +11,15 @@ import { CustomerComponent } from './customer/customer.component';
 import { CustomersComponent } from './customers/customers.component';
 import { CustomersServed } from './customers-served/customers-served.component';
 
+import { CustomerAdd } from './customer-add/customer-add.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     CustomerComponent,
     CustomersComponent,
-    CustomersServed
+    CustomersServed,
+    CustomerAdd
   ],
   imports: [
     BrowserModule,

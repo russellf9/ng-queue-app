@@ -43,6 +43,7 @@ function removeCustomer(targetCustomerId){
 
 function addCustomer(customer){
   customer.id = uuid.v4();
+  customer.joinedTime = new Date().toString();
   customers.push(customer);
 }
 

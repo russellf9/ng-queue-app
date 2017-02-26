@@ -33,6 +33,12 @@ npm run serve
 
 ```
 
+```
+ng serve
+
+```
+
+
 ## Use the Angular CLI!
 
 For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com/ultimate-angular-cli-reference/)
@@ -61,7 +67,9 @@ Initial Set up
 * [X] Move $http requests to a Service
 
 
-* [ ] Add action to Serve Customer
+* [X] Add action to Serve Customer
+
+* [ ] Add UI to select Products
 
 * [ ] Using Observables with RxJS to get update!
 
@@ -69,9 +77,25 @@ Initial Set up
 
 * [ ] Add a Watch to the build prod task
 
-* [ ] Make specific Object types - is Customer type and cast response as thet type
+* [ ] Make specific Object types - is Customer type and cast response as that type
 
 * [ ] Add tests
+
+* [ ] Add map files
+
+* [ ] Add and document debugging system
+
+* [ ] And code verification to the build task
+
+* [ ] Add code style verification to the build task
+
+* [ ] Add external library (moment.js) to display Joined Time
+
+* [ ] Find the definitive NG2 style guide
+
+* [ ] Add a `pipe' (filter)
+
+* [ ] 
 
 ##
 

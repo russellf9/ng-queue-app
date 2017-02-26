@@ -6,6 +6,13 @@ export class CustomerService {
 
   constructor( private http: Http ) { }
 
+  addCustomer(customer) {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    let body = JSON.stringify(customer);
+
+    return this.http.post('/api/customer/add', body, options);
+  }
 
   serveCustomer(id) {
     let headers = new Headers({'Content-Type': 'application/json'});

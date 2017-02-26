@@ -31,12 +31,11 @@ export class CustomersServed implements OnInit, OnDestroy {
       // the first argument is a function which runs on success
       data => {
         this.customersServed = data;
-        console.log('data ', data)
       },
       // the second argument is a function which runs on error
       err => console.error(err),
       // the third argument is a function which runs on completion
-      () => console.log('done loading Customers Served!')
+      //() => console.log('done loading Customers Served!')
     );
   }
 
