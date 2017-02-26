@@ -17,7 +17,7 @@ I followed the instructions from [setup-angular-2-nodejs-structure-angular-cli-e
 
 As the standard NG-2 CLI process uses Webpack to (emulate)? the application with creating a directory structure for Development I had to make a structure which uses Production.
 
-The following commands create the build files in a `dist` directory and serves the app to `http://localhost:3000/`
+
 
 
 ## Notes
@@ -25,18 +25,28 @@ The following commands create the build files in a `dist` directory and serves t
 I'm using [Semantic UI](http://semantic-ui.com/) as I having some issues using Bootstrap and it is the same CSS framewoek as used in the NG-2 book.
 
 Based on the [Qudini Front End Test](https://github.com/qudini/front-end-test}
-  
+
+## Build Process
+
+The following commands create the build files in a `dist` directory, and serve the app
+The node server isn't refreshed automatically so has to be refreshed manually.
+
 ```
-ng build
+
+ng build --watch
+
+
+```
+
+In another CLI tab
+
+```
 
 npm run serve
 
 ```
 
-```
-ng serve
-
-```
+Navigate to `http://localhost:3000/`
 
 
 ## Use the Angular CLI!
@@ -66,16 +76,15 @@ Initial Set up
 
 * [X] Move $http requests to a Service
 
-
 * [X] Add action to Serve Customer
 
 * [ ] Add UI to select Products
 
 * [ ] Using Observables with RxJS to get update!
 
-* [ ] Add action to Add Customer to the Queue
+* [X] Add action to Add Customer to the Queue
 
-* [ ] Add a Watch to the build prod task
+* [X] Add a Watch to the build prod task
 
 * [ ] Make specific Object types - is Customer type and cast response as that type
 
