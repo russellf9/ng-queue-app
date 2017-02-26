@@ -79,6 +79,8 @@ Initial Set up
 * [X] Add action to Serve Customer
 
 * [ ] Add UI to select Products
+  - Create a Product Type
+  - 
 
 * [ ] Using Observables with RxJS to get update!
 

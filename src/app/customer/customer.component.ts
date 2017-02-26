@@ -7,6 +7,8 @@ import {
 
 import { CustomerService } from './customer.service';
 
+import { Product } from '../product/product.model';
+
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
@@ -18,7 +20,7 @@ export class CustomerComponent  {
 
   @Input() id:string;
   @Input() name:string;
-  @Input() product:Object;
+  // @Input() product:Object;
   @Input() notes:string;
   @Input() status:string;
 
@@ -26,7 +28,14 @@ export class CustomerComponent  {
 
   loading:Boolean;
 
+  product:Product;
+
   constructor( private customerService : CustomerService ) {
+
+    // id
+    // name
+    // price
+    this.product = new Product(1, 'phone topup', 10);
   }
 
   callUpdate():void {

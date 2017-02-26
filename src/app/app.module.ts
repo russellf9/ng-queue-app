@@ -13,13 +13,16 @@ import { CustomersServed } from './customers-served/customers-served.component';
 
 import { CustomerAdd } from './customer-add/customer-add.component';
 
+import { Product } from './product/product.model';
+
 @NgModule({
   declarations: [
     AppComponent,
     CustomerComponent,
     CustomersComponent,
     CustomersServed,
-    CustomerAdd
+    CustomerAdd,
+
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { CustomerAdd } from './customer-add/customer-add.component';
   ],
   providers: [
     CustomerService,
-    CustomersServedService
+    CustomersServedService,
+    Product
   ],
   bootstrap: [AppComponent]
 })
