@@ -2,13 +2,17 @@
   <div class="content">
     <img class="right floated mini ui image" src="/assets/images/avatar/large/elliot.jpg">
     <div class="header">
-      {{name}}
+      {{ name }}
     </div>
     <div class="meta">
       <span>{{ notes }}</span>
     </div>
-    <div class="description">
-      <p>{{ product.name }} -  £{{ product.price }}</p>
+    <div class="product">
+      <product-list
+        (onChange)="updateProduct($event)"
+        [products]="products"
+        [selectedProduct]="product">
+      </product-list>
     </div>
     <div class="extra content">
       <div class="ui two buttons" *ngIf="status !== 'served'"

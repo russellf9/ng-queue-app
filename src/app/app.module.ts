@@ -13,7 +13,13 @@ import { CustomersServed } from './customers-served/customers-served.component';
 
 import { CustomerAdd } from './customer-add/customer-add.component';
 
+import { ProductList } from './product-list/product-list.component';
+
+import { ProductService } from './product/product.service';
+import { ProductComponent } from './product/product.component';
 import { Product } from './product/product.model';
+
+
 
 @NgModule({
   declarations: [
@@ -22,7 +28,8 @@ import { Product } from './product/product.model';
     CustomersComponent,
     CustomersServed,
     CustomerAdd,
-
+    ProductList,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +39,7 @@ import { Product } from './product/product.model';
   providers: [
     CustomerService,
     CustomersServedService,
+    ProductService,
     Product
   ],
   bootstrap: [AppComponent]

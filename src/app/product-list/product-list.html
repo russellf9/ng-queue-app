@@ -1,0 +1,8 @@
+<div class="ui simple dropdown item">
+  <span *ngIf="selectedItem"> {{ selectedItem.name }}</span>
+  <i class="icon dropdown"></i>
+  <div class="menu">
+    <a class="item" *ngFor="let product of products" (click)="select(product)">{{product.name}}</a>
+  </div>
+</div>
+

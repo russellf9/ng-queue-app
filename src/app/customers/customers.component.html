@@ -4,6 +4,7 @@
                 *ngFor="let customer of customers"
                 [id]="customer.id"
                 [name]="customer.name"
+                [product]="customer.product"
                 [status]="customer.status"
                 [notes]="customer.notes"
                 (onUpdate)="onUpdate($event)">

@@ -14,6 +14,14 @@ export class CustomerService {
     return this.http.post('/api/customer/add', body, options);
   }
 
+  updateCustomer(customer) {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    let body = JSON.stringify(customer);
+
+    return this.http.put('/api/customer', body, options);
+  }
+
   serveCustomer(id) {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});

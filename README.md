@@ -88,6 +88,8 @@ Initial Set up
 
 * [X] Add a Watch to the build prod task
 
+* [ ] Get the prod to do a Live reload
+
 * [ ] Make specific Object types - is Customer type and cast response as that type
 
 * [ ] Add tests

@@ -1,50 +1,59 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter
-} from '@angular/core';
-
-import { CustomerService } from './customer.service';
-
-import { Product } from '../product/product.model';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {CustomerService} from './customer.service';
+import {Product} from '../product/product.model';
+import {ProductService} from "../product/product.service";
 
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.scss'],
-  providers: [ CustomerService ]
+  providers: [CustomerService, ProductService]
 })
 
-export class CustomerComponent  {
+export class CustomerComponent {
 
   @Input() id:string;
   @Input() name:string;
-  // @Input() product:Object;
+  @Input() product:any;
   @Input() notes:string;
   @Input() status:string;
 
   @Output() onUpdate = new EventEmitter();
 
   loading:Boolean;
+  products:Product[];
 
-  product:Product;
+  constructor(private customerService:CustomerService,
+              private productService:ProductService) {
 
-  constructor( private customerService : CustomerService ) {
-
-    // id
-    // name
-    // price
-    this.product = new Product(1, 'phone topup', 10);
+    this.productService.getProducts()
+      .subscribe((products) => {
+        this.products = products;
+      });
   }
 
   callUpdate():void {
     this.onUpdate.emit();
   }
 
+  updateProduct = function (product):void {
+    var customer = {
+      id: this.id,
+      name: this.name,
+      product: product,
+      notes: this.notes,
+      status: this.notes
+    };
+
+    this.customerService.updateCustomer(customer)
+      .subscribe(() => {
+        this.callUpdate();
+      });
+  };
+
+
   serve() {
     this.loading = true;
-
     this.customerService.serveCustomer(this.id)
       .subscribe(() => {
         this.loading = false;
@@ -54,7 +63,6 @@ export class CustomerComponent  {
 
   remove() {
     this.loading = true;
-
     this.customerService.deleteCustomer(this.id)
       .subscribe(() => {
         this.loading = false;
@@ -62,5 +70,6 @@ export class CustomerComponent  {
       });
   }
 }
+
 
 

@@ -22,11 +22,13 @@
       </div>
       <div class="field">
         <label for="product">Product</label>
-        <input type="text"
-               id="product"
-               name="product"
-               placeholder="product"
-               ngModel>
+        <product-list
+          id="product"
+          (onChange)="//noinspection JSUnresolvedVariable
+updateProduct($event)"
+          [products]="products"
+          [selectedProduct]="product">
+        </product-list>
       </div>
       <div class="field">
         <label for="notes">Notes</label>
