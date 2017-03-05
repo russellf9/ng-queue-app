@@ -13,7 +13,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 The project was intended to use an existing `node.js` setup to handle the backend work. Setting this up was a little trickier than what I would have liked.
 
-I followed the instructions from [setup-angular-2-nodejs-structure-angular-cli-expres](http://www.javascripthtml.com/setup-angular-2-nodejs-structure-angular-cli-express/) to set up the Node server
+I followed the instructions from [setup-angular-2-nodejs-structure-angular-cli-express](http://www.javascripthtml.com/setup-angular-2-nodejs-structure-angular-cli-express/) to set up the Node server
 
 As the standard NG-2 CLI process uses Webpack to (emulate)? the application with creating a directory structure for Development I had to make a structure which uses Production.
 
@@ -78,8 +78,9 @@ Initial Set up
 
 * [X] Add action to Serve Customer
 
-* [ ] Add UI to select Products
-  - Create a Product Type
+* [x] Add UI to select Products
+* [x] Create a Product Type
+
   - 
 
 * [ ] Using Observables with RxJS to get update!
@@ -96,11 +97,11 @@ Initial Set up
 
 * [ ] Add map files
 
-* [ ] Add and document debugging system
+* [ ] Add and document debugging system (see Evernote)
 
 * [ ] And code verification to the build task
 
-* [ ] Add code style verification to the build task
+* [ ] Add code style verification to the build task (hint)
 
 * [ ] Add external library (moment.js) to display Joined Time
 
