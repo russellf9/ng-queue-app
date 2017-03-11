@@ -31,6 +31,21 @@ Based on the [Qudini Front End Test](https://github.com/qudini/front-end-test}
 The following commands create the build files in a `dist` directory, and serve the app
 The node server isn't refreshed automatically so has to be refreshed manually.
 
+## Libraries
+
+I'm trying to use my typical libraries to make life easier ( but easier isn't always straightforward! )
+
+### Moment.js
+
+I've use [angular2-moment](https://github.com/urish/angular2-moment), I was able to use the `pipes` but I couldn't workout how to use Moment.js within the component to verify a valid date
+
+### Immutable.js
+
+See [immutable-js](http://ricostacruz.com/cheatsheets/immutable-js.html).
+
+Using the `List` Object, will see how else to use this library.
+
+
 ```
 
 ng build --watch
@@ -83,11 +98,15 @@ Initial Set up
 
   - 
 
-* [ ] Using Observables with RxJS to get update!
+* [x] Using Observables with RxJS to get update!
+
+* [x] Use socket.io to give push updates
 
 * [X] Add action to Add Customer to the Queue
 
 * [X] Add a Watch to the build prod task
+
+* [ ] Create a Service to provide an Observable to supplie the Queue data
 
 * [ ] Get the prod to do a Live reload
 
@@ -103,7 +122,7 @@ Initial Set up
 
 * [ ] Add code style verification to the build task (hint)
 
-* [ ] Add external library (moment.js) to display Joined Time
+* [X] Add external library (moment.js) to display Joined Time
 
 * [ ] Find the definitive NG2 style guide
 

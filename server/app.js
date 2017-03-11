@@ -1,18 +1,33 @@
 var express = require('express');
 var uuid = require('node-uuid');
 var bodyParser = require('body-parser');
-
-var app = express();
+var http = require('http');
+var app = module.exports.app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
 app.use('/', express.static(__dirname + '/../dist'));
 
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);  //pass a http.Server instance
 
-app.listen(3000, function () {
+server.listen(3000, function () {
   console.log('Example listening on port 3000!');
+  setTimeout(sendTime, 2000);
 });
+
+
+// Send current time to all connected clients
+function sendTime() {
+  io.emit('time', { time: new Date().toJSON() });
+}
+
+function sendUpdate(type) {
+  io.emit('update', { type : type });
+}
+
+// Send current time every 10 secs
+setInterval(sendTime, 10000);
 
 
 var customers = [
@@ -78,6 +93,8 @@ function addCustomer(customer) {
   customer.id = uuid.v4();
   customer.joinedTime = new Date().toString();
   customers.push(customer);
+
+  sendUpdate('CUSTOMER_ADD');
 }
 
 function updateCustomer(customer) {

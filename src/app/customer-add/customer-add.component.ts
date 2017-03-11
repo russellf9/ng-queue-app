@@ -15,12 +15,17 @@ export class CustomerAdd {
   products:Product[];
   loading:Boolean;
 
-  constructor(private customerService:CustomerService, private productService:ProductService) {
+  constructor(private customerService:CustomerService,
+              private productService:ProductService,
+              ) {
+
     this.productService.getProducts()
       .subscribe((products) => {
         this.products = products;
         this.product = products[0];
       });
+
+
   }
 
   updateProduct = function (product:Product):void {
@@ -39,7 +44,7 @@ export class CustomerAdd {
     this.customerService.addCustomer(customer)
       .subscribe(() => {
         this.loading = false;
-        form.reset();
+        // form.reset();
       })
   }
 }

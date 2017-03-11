@@ -17,6 +17,7 @@ export class CustomerComponent {
   @Input() product:any;
   @Input() notes:string;
   @Input() status:string;
+  @Input() joinedTime:string;
 
   @Output() onUpdate = new EventEmitter();
 
@@ -42,7 +43,8 @@ export class CustomerComponent {
       name: this.name,
       product: product,
       notes: this.notes,
-      status: this.notes
+      status: this.notes,
+      joinedTime: this.joinedTime
     };
 
     this.customerService.updateCustomer(customer)

@@ -3,22 +3,29 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { AppComponent } from './app.component';
+
 import { CustomerService} from './customer/customer.service';
 import { CustomersServedService }  from './customers-served/customers-served.service';
 
-import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CustomersComponent } from './customers/customers.component';
+
 import { CustomersServed } from './customers-served/customers-served.component';
 
 import { CustomerAdd } from './customer-add/customer-add.component';
 
 import { ProductList } from './product-list/product-list.component';
-
 import { ProductService } from './product/product.service';
 import { ProductComponent } from './product/product.component';
 import { Product } from './product/product.model';
 
+import { MessageService } from './message/message.service';
+
+import { TimeService } from './time/time.service';
+import { TimeComponent } from './time-display/time.component';
+
+import {MomentModule} from 'angular2-moment';
 
 
 @NgModule({
@@ -29,18 +36,22 @@ import { Product } from './product/product.model';
     CustomersServed,
     CustomerAdd,
     ProductList,
-    ProductComponent
+    ProductComponent,
+    TimeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MomentModule
   ],
   providers: [
     CustomerService,
     CustomersServedService,
     ProductService,
-    Product
+    Product,
+    MessageService,
+    TimeService
   ],
   bootstrap: [AppComponent]
 })
