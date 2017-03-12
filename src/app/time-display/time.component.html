@@ -1,4 +1,5 @@
-<div>
-  <p>{{ time | amDateFormat:'LLLL' }}</p>
+<div *ngIf="time">
+  <p>{{ time.date | amDateFormat:'LL - hh:mm:ss' }}</p>
 </div>
+
 

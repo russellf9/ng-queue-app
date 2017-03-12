@@ -3,19 +3,18 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.component';
-
 import { CustomerService} from './customer/customer.service';
 import { CustomersServedService }  from './customers-served/customers-served.service';
+import { AppComponent } from './app.component';
 
 import { CustomerComponent } from './customer/customer.component';
 import { CustomersComponent } from './customers/customers.component';
-
 import { CustomersServed } from './customers-served/customers-served.component';
 
 import { CustomerAdd } from './customer-add/customer-add.component';
 
 import { ProductList } from './product-list/product-list.component';
+
 import { ProductService } from './product/product.service';
 import { ProductComponent } from './product/product.component';
 import { Product } from './product/product.model';

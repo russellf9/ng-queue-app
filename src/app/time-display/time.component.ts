@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {TimeService} from "./../time/time.service";
 import {Observable} from "rxjs/Observable";
 import {List} from "immutable";
+import {Time} from "./../time/time.model";
 
 @Component({
   selector: 'time',
@@ -11,27 +12,26 @@ import {List} from "immutable";
 })
 export class TimeComponent implements OnInit {
 
-  time:string;
+  time: Time;
 
   constructor(private timeService:TimeService) {}
 
-  handleData(list: List<any>) {
-    let date = list.get(-1);
-    this.time = date  &&  new Date(date.time) ? date.time : '';
+  handleData(list: List<Time>) {
+    this.time = list.get(-1);
   }
 
-  handleComplete() {
+  static handleComplete() {
     console.log('Complete');
   }
 
-  handleError(error) {
+  static handleError(error) {
     console.log('error:', error);
     return Observable.throw(error);
   }
 
   //noinspection JSUnusedGlobalSymbols
   ngOnInit() {
-    this.timeService.times.subscribe(this.handleData.bind(this), this.handleError.bind(this), this.handleComplete.bind(this));
+    this.timeService.times.subscribe(this.handleData.bind(this), TimeComponent.handleError.bind(this), TimeComponent.handleComplete.bind(this));
   }
 
 }

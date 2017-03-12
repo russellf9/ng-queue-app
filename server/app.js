@@ -19,15 +19,15 @@ server.listen(3000, function () {
 
 // Send current time to all connected clients
 function sendTime() {
-  io.emit('time', { time: new Date().toJSON() });
+  io.emit('time', { date: new Date() });
 }
 
 function sendUpdate(type) {
   io.emit('update', { type : type });
 }
 
-// Send current time every 10 secs
-setInterval(sendTime, 10000);
+// Send current time every 1 secs
+setInterval(sendTime, 1000);
 
 
 var customers = [
