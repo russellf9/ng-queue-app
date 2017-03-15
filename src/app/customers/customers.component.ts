@@ -1,76 +1,48 @@
-import {Component, OnInit} from '@angular/core';
-import {Http, Response} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
-import {Observer} from 'rxjs/Observer';
-import 'rxjs/add/operator/map';
+import {Component, OnInit} from "@angular/core";
+import {Observable} from "rxjs/Observable";
+import "rxjs/add/operator/map";
+import {List} from "immutable";
+import {QueueService} from "../queue/queue.service";
 
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
   styleUrls: ['./../app.component.scss',
     './customers.component.scss'],
-  providers: []
+  providers: [QueueService]
 })
 export class CustomersComponent implements OnInit {
 
   customers:Object;
   loading:Boolean;
 
-  observable:Observable<string>;
-  observer:Observer<string>;
-
-
-  constructor(private http:Http) {}
-
-
-
-  makeRequest():void {
-    this.loading = true;
-    this.http.request('/api/customers')
-      .subscribe((result:Response) => {
-        this.customers = result.json();
-        // this.customers = _.sortBy(this.customers, ['name']);
-        this.loading = false
-      });
-  }
-
-  subscribe() {
-    this.observable = new Observable((observer:Observer<string>) => {
-      this.observer = observer;
-    });
-  }
+  constructor(private queueService:QueueService) {}
 
 
   onUpdate() {
-    this.makeRequest();
+    console.log('The update call has been removed!');
+    //this.makeRequest();
   }
 
-  handleData(data) {
-    console.log('Here are the usable data', data);
-    // Insert Business logic here
+  handleData(list: List<any>) {
+    let data  = list.get(-1);
+    console.log('CustomersComponent = data ', data);
+
+    this.customers = data && data.queueData ? data.queueData.customers : [];
   }
 
-  handleComplete() {
+
+  static handleComplete() {
     console.log('Complete');
   }
 
-  handleError(error) {
+  static handleError(error) {
     console.log('error:', error);
     return Observable.throw(error);
   }
 
   //noinspection JSUnusedGlobalSymbols
   ngOnInit() {
-    this.subscribe();
-    this.makeRequest();
-
-    this.observable.subscribe(this.handleData, this.handleError, this.handleComplete);
-
-    this.observer.next('12');
-    this.observer.next('15');
-    this.observer.complete();
-    this.observer.next('16');
+    this.queueService.queueData.subscribe(this.handleData.bind(this));
   }
 }
-
-

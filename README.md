@@ -75,9 +75,10 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [x] Use socket.io to give push updates
 * [X] Add action to Add Customer to the Queue
 * [X] Add a Watch to the build prod task
-* [ ] Create a Service to provide an Observable to supplie the Queue data
+* [X] Create a Service to provide an Observable to supply the Queue data
 * [ ] Get the prod to do a Live reload
 * [ ] Make specific Object types - is Customer type and cast response as that type
+* [ ] Resolve moment.js imports completely - Is the 'MomentModule' really required, and are the typings being imported correctly
 * [ ] Add tests
 * [ ] Add map files
 * [ ] Add and document debugging system (see Evernote)
@@ -86,7 +87,9 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [X] Add external library (moment.js) to display Joined Time
 * [ ] Find the definitive NG2 style guide
 * [ ] Add a `pipe' (filter)
-* [ ] 
+* [ ] Make the 'app.js' file ES6 style
+* [ ] Sort Customer Add form out
+
 
 ##
 

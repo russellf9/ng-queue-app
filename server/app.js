@@ -11,19 +11,46 @@ app.use('/', express.static(__dirname + '/../dist'));
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);  //pass a http.Server instance
 
+
+io.on('connection', (socket) => {
+
+  console.log('user connected with socketId: ' + socket.id);
+
+  socket.on('handshake', (data) => {
+    console.log('data ', data);
+    sendUpdate('initial');
+  });
+
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+
+});
+
+
 server.listen(3000, function () {
   console.log('Example listening on port 3000!');
-  setTimeout(sendTime, 2000);
+  setTimeout(sendTime, 3000);
+
 });
+
+
+
 
 
 // Send current time to all connected clients
 function sendTime() {
-  io.emit('time', { date: new Date() });
+  io.emit('time', {date: new Date()});
 }
 
 function sendUpdate(type) {
-  io.emit('update', { type : type });
+  io.emit('update', {
+    type: type,
+    customers: customers,
+    products: products,
+    servedCustomers: servedCustomers
+  });
 }
 
 // Send current time every 1 secs
@@ -47,7 +74,8 @@ var customers = [
     name: 'Allan Turing',
     product: {name: 'Cryptography advice'},
     id: uuid.v4(),
-    joinedTime: new Date().toString()}
+    joinedTime: new Date().toString()
+  }
 ];
 
 
@@ -69,13 +97,20 @@ var products = [
   }
 ];
 
-var servedCustomers = [];
+var servedCustomers = [{
+  name: 'Orson Wells',
+  product: {name: 'Magnifying glass repair'},
+  id: uuid.v4(),
+  status: 'served',
+  joinedTime: new Date().toString()
+}];
 
 function serveCustomer(id) {
   customers = customers.filter(function (customer) {
     if (customer.id == id) {
       customer.status = 'served';
       servedCustomers.push(customer);
+      sendUpdate('CUSTOMER_SERVED');
       return false;
     } else {
       return true;
@@ -86,7 +121,9 @@ function serveCustomer(id) {
 function removeCustomer(targetCustomerId) {
   customers = customers.filter(function (customer) {
     return customer.id !== targetCustomerId;
-  })
+  });
+
+  sendUpdate('CUSTOMER_DELETE');
 }
 
 function addCustomer(customer) {
@@ -98,7 +135,8 @@ function addCustomer(customer) {
 }
 
 function updateCustomer(customer) {
- replaceCustomer(customer);
+  replaceCustomer(customer);
+  sendUpdate('CUSTOMER_UPDATE');
 }
 
 function findCustomer(id) {
@@ -108,7 +146,7 @@ function findCustomer(id) {
 }
 
 function replaceCustomer(customer) {
-  var index = customers.findIndex(function(c) {
+  var index = customers.findIndex(function (c) {
     return c.id === customer.id;
   });
   customers[index] = customer;

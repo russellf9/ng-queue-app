@@ -15,6 +15,7 @@ import { CustomerAdd } from './customer-add/customer-add.component';
 
 import { ProductList } from './product-list/product-list.component';
 
+import { QueueService } from './queue/queue.service';
 import { ProductService } from './product/product.service';
 import { ProductComponent } from './product/product.component';
 import { Product } from './product/product.model';
@@ -45,6 +46,7 @@ import {MomentModule} from 'angular2-moment';
     MomentModule
   ],
   providers: [
+    QueueService,
     CustomerService,
     CustomersServedService,
     ProductService,

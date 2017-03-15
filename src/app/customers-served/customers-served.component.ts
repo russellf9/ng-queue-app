@@ -1,57 +1,46 @@
-import {
-  Component,
-  OnInit, OnDestroy
-} from '@angular/core';
-
-import {CustomersServedService} from './customers-served.service';
+import {Component, OnInit, OnDestroy} from "@angular/core";
+import {CustomersServedService} from "./customers-served.service";
+import {QueueService} from "../queue/queue.service";
+import "rxjs/add/operator/map";
+import {List} from "immutable";
 
 @Component({
   selector: 'customers-served',
   templateUrl: './customers-served.component.html',
   styleUrls: ['./../app.component.scss',
     './customers-served.component.scss'],
-  providers: [CustomersServedService]
+  providers: [CustomersServedService, QueueService]
 })
 export class CustomersServed implements OnInit, OnDestroy {
 
   loading:Boolean;
   customersServed:Object;
 
-  constructor(private customerServedService:CustomersServedService) {
+  constructor(private queueService:QueueService) {
   }
 
-  // Add Polling for now...
-  intervalId = setInterval(() => {
-    this.getCustomersServed();
-  }, 500);
+  //
 
+  handleData(list: List<any>) {
+    let data  = list.get(-1);
+    console.log('CustomersServed = data ', data);
 
-  getCustomersServed() {
-    this.customerServedService.getCustomersServed().subscribe(
-      // the first argument is a function which runs on success
-      data => {
-        this.customersServed = data;
-      },
-      // the second argument is a function which runs on error
-      err => console.error(err),
-      // the third argument is a function which runs on completion
-      //() => console.log('done loading Customers Served!')
-    );
+    this.customersServed  = data && data.queueData ? data.queueData.customersServed : [];
+
+    if (!data) {
+      // this.makeRequest();
+    }
   }
 
 
   //noinspection JSUnusedGlobalSymbols
   ngOnInit() {
-    this.getCustomersServed();
+    this.queueService.queueData.subscribe(this.handleData.bind(this));
   }
 
   //noinspection JSUnusedGlobalSymbols
   ngOnDestroy() {
-    if (this.intervalId != null) {
-      //noinspection TypeScriptUnresolvedFunction
-      clearInterval(this.intervalId);
-      this.intervalId = null;
-    }
+
   }
 
 }
