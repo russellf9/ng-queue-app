@@ -16,31 +16,30 @@ export class CustomersServed implements OnInit, OnDestroy {
   loading:Boolean;
   customersServed:Object;
 
-  constructor(private queueService:QueueService) {
+
+  constructor(private queueService:QueueService) {}
+
+  subscribe() {
+    this.queueService.queueData.subscribe(this.handleData, () => {});
   }
 
-  //
+  unsubscribe() {
+    this.queueService.queueData.unsubscribe();
+  }
+
 
   handleData(list: List<any>) {
     let data  = list.get(-1);
-    console.log('CustomersServed = data ', data);
-
     this.customersServed  = data && data.queueData ? data.queueData.customersServed : [];
-
-    if (!data) {
-      // this.makeRequest();
-    }
   }
-
 
   //noinspection JSUnusedGlobalSymbols
   ngOnInit() {
-    this.queueService.queueData.subscribe(this.handleData.bind(this));
+    this.subscribe();
   }
 
   //noinspection JSUnusedGlobalSymbols
   ngOnDestroy() {
-
+    this.unsubscribe();
   }
-
 }

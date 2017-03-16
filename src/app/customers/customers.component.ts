@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, OnDestroy} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import {List} from "immutable";
@@ -11,38 +11,39 @@ import {QueueService} from "../queue/queue.service";
     './customers.component.scss'],
   providers: [QueueService]
 })
-export class CustomersComponent implements OnInit {
+export class CustomersComponent implements OnInit, OnDestroy {
 
   customers:Object;
   loading:Boolean;
 
   constructor(private queueService:QueueService) {}
 
-
-  onUpdate() {
-    console.log('The update call has been removed!');
-    //this.makeRequest();
+  subscribe() {
+    this.queueService.queueData.subscribe(this.handleData, this.handleError, () => {});
   }
+
+  unsubscribe() {
+    this.queueService.queueData.unsubscribe();
+  }
+
 
   handleData(list: List<any>) {
     let data  = list.get(-1);
-    console.log('CustomersComponent = data ', data);
-
-    this.customers = data && data.queueData ? data.queueData.customers : [];
+       this.customers = data && data.queueData ? data.queueData.customers : [];
   }
 
 
-  static handleComplete() {
-    console.log('Complete');
-  }
-
-  static handleError(error) {
-    console.log('error:', error);
+  handleError(error) {
     return Observable.throw(error);
   }
 
   //noinspection JSUnusedGlobalSymbols
   ngOnInit() {
-    this.queueService.queueData.subscribe(this.handleData.bind(this));
+    this.subscribe();
+  }
+
+  //noinspection JSUnusedGlobalSymbols
+  ngOnDestroy() {
+    this.unsubscribe();
   }
 }
