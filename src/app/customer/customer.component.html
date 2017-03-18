@@ -16,10 +16,10 @@
       </product-list>
     </div>
     <div class="product" *ngIf="status === 'served'">
-      <p> {{ product.name }}</p>
+      <p> {{ product.name }} </p>
     </div>
     <div>
-      <p> Joined queue - {{ joinedTime | amCalendar }}</p>
+      <p class="small"> Joined queue - {{ joinedTime | amCalendar }}</p>
     </div>
     <div class="extra content">
       <div class="ui two buttons" *ngIf="status !== 'served'"

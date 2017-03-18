@@ -75,7 +75,8 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [x] Use socket.io to give push updates
 * [X] Add action to Add Customer to the Queue
 * [X] Add a Watch to the build prod task
-* [X] Create a Service to provide an Observable to supply the Queue data
+* [X] [Create a Service to provide an Observable to supply the Queue data]()
+* [ ] Replace HTTP call in Product Service
 * [ ] Get the prod to do a Live reload
 * [ ] Make specific Object types - is Customer type and cast response as that type
 * [ ] Resolve moment.js imports completely - Is the 'MomentModule' really required, and are the typings being imported correctly

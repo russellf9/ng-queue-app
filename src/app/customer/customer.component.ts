@@ -1,10 +1,11 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
 import {CustomerService} from './customer.service';
 import {Product} from '../product/product.model';
 import {ProductService} from "../product/product.service";
 
 @Component({
   selector: 'app-customer',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.scss'],
   providers: [CustomerService, ProductService]
@@ -25,19 +26,18 @@ export class CustomerComponent {
   products:Product[];
 
   constructor(private customerService:CustomerService,
-              private productService:ProductService) {
+              private productService:ProductService,
+              private changeDetectorRef:ChangeDetectorRef) {
 
     this.productService.getProducts()
       .subscribe((products) => {
         this.products = products;
+        this.changeDetectorRef.markForCheck();
       });
   }
 
-  callUpdate():void {
-    this.onUpdate.emit();
-  }
-
   updateProduct = function (product):void {
+
     var customer = {
       id: this.id,
       name: this.name,
@@ -49,8 +49,9 @@ export class CustomerComponent {
 
     this.customerService.updateCustomer(customer)
       .subscribe(() => {
-        this.callUpdate();
+        this.loading = false;
       });
+
   };
 
 
@@ -59,7 +60,6 @@ export class CustomerComponent {
     this.customerService.serveCustomer(this.id)
       .subscribe(() => {
         this.loading = false;
-        this.callUpdate()
       })
   }
 
@@ -68,7 +68,6 @@ export class CustomerComponent {
     this.customerService.deleteCustomer(this.id)
       .subscribe(() => {
         this.loading = false;
-        this.callUpdate();
       });
   }
 }

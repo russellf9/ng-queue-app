@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from "@angular/core";
+import {Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef} from "@angular/core";
 import {CustomersServedService} from "./customers-served.service";
 import {QueueService} from "../queue/queue.service";
 import "rxjs/add/operator/map";
@@ -6,6 +6,7 @@ import {List} from "immutable";
 
 @Component({
   selector: 'customers-served',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './customers-served.component.html',
   styleUrls: ['./../app.component.scss',
     './customers-served.component.scss'],
@@ -16,11 +17,10 @@ export class CustomersServed implements OnInit, OnDestroy {
   loading:Boolean;
   customersServed:Object;
 
-
-  constructor(private queueService:QueueService) {}
+  constructor(private changeDetectorRef:ChangeDetectorRef, private queueService:QueueService) {}
 
   subscribe() {
-    this.queueService.queueData.subscribe(this.handleData, () => {});
+    this.queueService.queueData.subscribe(this.handleData.bind(this), () => {});
   }
 
   unsubscribe() {
@@ -31,6 +31,7 @@ export class CustomersServed implements OnInit, OnDestroy {
   handleData(list: List<any>) {
     let data  = list.get(-1);
     this.customersServed  = data && data.queueData ? data.queueData.customersServed : [];
+    this.changeDetectorRef.markForCheck();
   }
 
   //noinspection JSUnusedGlobalSymbols

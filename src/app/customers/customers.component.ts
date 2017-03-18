@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from "@angular/core";
+import {Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import {List} from "immutable";
@@ -6,6 +6,7 @@ import {QueueService} from "../queue/queue.service";
 
 @Component({
   selector: 'app-customers',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './customers.component.html',
   styleUrls: ['./../app.component.scss',
     './customers.component.scss'],
@@ -16,10 +17,11 @@ export class CustomersComponent implements OnInit, OnDestroy {
   customers:Object;
   loading:Boolean;
 
-  constructor(private queueService:QueueService) {}
+  constructor(private changeDetectorRef:ChangeDetectorRef, private queueService:QueueService) {
+  }
 
   subscribe() {
-    this.queueService.queueData.subscribe(this.handleData, this.handleError, () => {});
+    this.queueService.queueData.subscribe(this.handleData.bind(this), this.handleError.bind(this), () => {});
   }
 
   unsubscribe() {
@@ -29,7 +31,8 @@ export class CustomersComponent implements OnInit, OnDestroy {
 
   handleData(list: List<any>) {
     let data  = list.get(-1);
-       this.customers = data && data.queueData ? data.queueData.customers : [];
+    this.customers = data && data.queueData ? data.queueData.customers : [];
+    this.changeDetectorRef.markForCheck();
   }
 
 
