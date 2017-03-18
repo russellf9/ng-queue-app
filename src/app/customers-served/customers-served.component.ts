@@ -1,5 +1,4 @@
 import {Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef} from "@angular/core";
-import {CustomersServedService} from "./customers-served.service";
 import {QueueService} from "../queue/queue.service";
 import "rxjs/add/operator/map";
 import {List} from "immutable";
@@ -10,7 +9,7 @@ import {List} from "immutable";
   templateUrl: './customers-served.component.html',
   styleUrls: ['./../app.component.scss',
     './customers-served.component.scss'],
-  providers: [CustomersServedService, QueueService]
+  providers: [QueueService]
 })
 export class CustomersServed implements OnInit, OnDestroy {
 

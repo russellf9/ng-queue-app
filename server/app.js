@@ -9,18 +9,13 @@ app.use(bodyParser.json());
 app.use('/', express.static(__dirname + '/../dist'));
 
 var server = http.createServer(app);
+
 var io = require('socket.io').listen(server);  //pass a http.Server instance
 
-
 io.on('connection', (socket) => {
-
-  console.log('user connected with socketId: ' + socket.id);
-
   socket.on('handshake', (data) => {
-    console.log('data ', data);
     sendUpdate('initial');
   });
-
 
   socket.on('disconnect', () => {
     console.log('user disconnected');
@@ -30,12 +25,9 @@ io.on('connection', (socket) => {
 
 
 server.listen(3000, function () {
-  console.log('Example listening on port 3000!');
+  console.log('App listening on port 3000!');
   setTimeout(sendTime, 3000);
-
 });
-
-
 
 
 
@@ -49,7 +41,7 @@ function sendUpdate(type) {
     type: type,
     customers: customers,
     products: products,
-    servedCustomers: servedCustomers
+    customersServed: customersServed
   });
 }
 
@@ -97,7 +89,7 @@ var products = [
   }
 ];
 
-var servedCustomers = [{
+var customersServed = [{
   name: 'Orson Wells',
   product: {name: 'Magnifying glass repair'},
   id: uuid.v4(),
@@ -106,16 +98,13 @@ var servedCustomers = [{
 }];
 
 function serveCustomer(id) {
-  customers = customers.filter(function (customer) {
-    if (customer.id == id) {
-      customer.status = 'served';
-      servedCustomers.push(customer);
-      sendUpdate('CUSTOMER_SERVED');
-      return false;
-    } else {
-      return true;
-    }
-  })
+  let customer = customers.find(customer => customer.id === id);
+  customer.status = 'served';
+  customersServed.push(customer);
+
+  customers = customers.filter((customer) => customer.id !== id);
+
+  sendUpdate('CUSTOMER_SERVED');
 }
 
 function removeCustomer(targetCustomerId) {
@@ -130,7 +119,6 @@ function addCustomer(customer) {
   customer.id = uuid.v4();
   customer.joinedTime = new Date().toString();
   customers.push(customer);
-
   sendUpdate('CUSTOMER_ADD');
 }
 
@@ -159,7 +147,7 @@ app.get('/api/customers', function (req, res) {
 
 
 app.get('/api/customers/served', function (req, res) {
-  res.send(servedCustomers);
+  res.send(customersServed);
 });
 
 

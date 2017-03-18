@@ -37,7 +37,6 @@ export class CustomerComponent {
   }
 
   updateProduct = function (product):void {
-
     var customer = {
       id: this.id,
       name: this.name,
@@ -46,12 +45,12 @@ export class CustomerComponent {
       status: this.notes,
       joinedTime: this.joinedTime
     };
-
     this.customerService.updateCustomer(customer)
       .subscribe(() => {
         this.loading = false;
-      });
-
+      },
+        error => console.error(error)
+      )
   };
 
 
@@ -59,8 +58,10 @@ export class CustomerComponent {
     this.loading = true;
     this.customerService.serveCustomer(this.id)
       .subscribe(() => {
-        this.loading = false;
-      })
+          this.loading = false;
+        },
+        error => console.error(error)
+      )
   }
 
   remove() {
@@ -68,7 +69,9 @@ export class CustomerComponent {
     this.customerService.deleteCustomer(this.id)
       .subscribe(() => {
         this.loading = false;
-      });
+      },
+        error => console.error(error)
+      )
   }
 }
 

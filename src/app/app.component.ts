@@ -8,5 +8,5 @@ import { QueueService } from './queue/queue.service';
   providers: [QueueService]
 })
 export class AppComponent {
-  constructor(private queueService:QueueService) {}
+  constructor() {}
 }

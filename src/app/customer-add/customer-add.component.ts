@@ -20,12 +20,18 @@ export class CustomerAdd {
               ) {
 
     this.productService.getProducts()
-      .subscribe((products) => {
-        this.products = products;
-        this.product = products[0];
-      });
 
-
+      .subscribe(
+        // the first argument is a function which runs on success
+        products => {
+          this.products = products;
+          this.product = products[0];
+        },
+        // the second argument is a function which runs on error
+        error => console.error(error),
+        // the third argument is a function which runs on completion
+        //   () => console.log('done adding Customer!')
+      );
   }
 
   updateProduct = function (product:Product):void {
@@ -38,13 +44,12 @@ export class CustomerAdd {
       name: form.name,
       mobile: form.mobile,
       notes: form.notes,
-      product: {name: form.product}
+      product: form.product
     };
 
     this.customerService.addCustomer(customer)
       .subscribe(() => {
         this.loading = false;
-        // form.reset();
       })
   }
 }

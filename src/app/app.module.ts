@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { CustomerService} from './customer/customer.service';
-import { CustomersServedService }  from './customers-served/customers-served.service';
 import { AppComponent } from './app.component';
 
 import { CustomerComponent } from './customer/customer.component';
@@ -48,7 +47,6 @@ import {MomentModule} from 'angular2-moment';
   providers: [
     QueueService,
     CustomerService,
-    CustomersServedService,
     ProductService,
     Product,
     MessageService,
