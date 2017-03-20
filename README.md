@@ -79,18 +79,25 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [ ] Replace HTTP call in Product Service
 * [ ] Get the prod to do a Live reload
 * [ ] Make specific Object types - is Customer type and cast response as that type
+* [ ] Use Interface for Model? (Research best approach)
 * [ ] Resolve moment.js imports completely - Is the 'MomentModule' really required, and are the typings being imported correctly
 * [ ] Add tests
-* [ ] Add map files
+* [ ] Move all the Observables to a single Data Service
+* [ ] Use more functionality from Immutable.js
+* [ ] Add map files - This might be being done already
 * [ ] Add and document debugging system (see Evernote)
 * [ ] And code verification to the build task
 * [ ] Add code style verification to the build task (hint)
 * [X] Add external library (moment.js) to display Joined Time
 * [ ] Find the definitive NG2 style guide
 * [ ] Add a `pipe' (filter)
-* [ ] Make the 'app.js' file ES6 style
-* [ ] Sort Customer Add form out
-
+* [ ] Make the ' [app.js]() ' file ES6 style
+* [ ] Backend - use DELETE function
+* [ ] Improve the API ( DELETE /customer, UPDATE /customer etc)
+* [ ] Sort Customer Add form out (Make fields required etc)
+* [ ] Add validators to the form
+* [ ] Customer - Add Call Back functionality
+* [ ] Customer - Add Push Back functionality (Change order in queue)
 
 ##
 

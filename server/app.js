@@ -13,7 +13,7 @@ var server = http.createServer(app);
 var io = require('socket.io').listen(server);  //pass a http.Server instance
 
 io.on('connection', (socket) => {
-  socket.on('handshake', (data) => {
+  socket.on('handshake', () => {
     sendUpdate('initial');
   });
 

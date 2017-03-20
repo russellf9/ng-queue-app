@@ -10,6 +10,7 @@
         <div class="ui fluid small icon input">
           <input type="text"
                  id="name"
+                 required="true"
                  name="name"
                  placeholder="Name"
                  ngModel>
@@ -52,6 +53,7 @@
       </div>
       <div class="ui segment">
         <button type="submit"
+                [disabled]="!f.valid"
                 class="ui primary button"
                 tabindex="0">
           <span>Add Customer</span>
