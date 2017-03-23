@@ -1,7 +1,9 @@
-import {Component} from "@angular/core";
+import {Component, ChangeDetectorRef} from "@angular/core";
+import {Observable} from "rxjs/Observable";
 import {CustomerService} from "../customer/customer.service";
 import {Product} from "../product/product.model";
 import {ProductService} from "../product/product.service";
+
 
 @Component({
   selector: 'customer-add',
@@ -17,6 +19,7 @@ export class CustomerAdd {
 
   constructor(private customerService:CustomerService,
               private productService:ProductService,
+              private changeDetectorRef:ChangeDetectorRef
               ) {
 
     this.productService.getProducts()
@@ -25,7 +28,7 @@ export class CustomerAdd {
         // the first argument is a function which runs on success
         products => {
           this.products = products;
-          this.product = products[0];
+          this.setDefaultProduct();
         },
         // the second argument is a function which runs on error
         error => console.error(error),
@@ -34,9 +37,15 @@ export class CustomerAdd {
       );
   }
 
-  updateProduct = function (product:Product):void {
+  setDefaultProduct = function() {
+    //noinspection TypeScriptUnresolvedVariable
+    this.product = this.products[0];
+  };
+
+  updateProduct = function (product:any):void {
     //noinspection TypeScriptUnresolvedVariable
     this.product = product;
+    this.changeDetectorRef.markForCheck();
   };
 
   onSubmit(form:any):void {
@@ -44,13 +53,20 @@ export class CustomerAdd {
       name: form.name,
       mobile: form.mobile,
       notes: form.notes,
-      product: form.product
+      product: this.product
     };
 
     this.customerService.addCustomer(customer)
       .subscribe(() => {
         this.loading = false;
-      })
+        this.setDefaultProduct();
+      }, error => this.handleError(error),
+      )
+  }
+
+  //noinspection JSMethodCanBeStatic
+  handleError(error) {
+    return Observable.throw(error);
   }
 }
 

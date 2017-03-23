@@ -21,7 +21,11 @@ export class CustomersComponent implements OnInit, OnDestroy {
   }
 
   subscribe() {
-    this.queueService.queueData.subscribe(this.handleData.bind(this), this.handleError.bind(this), () => {});
+    this.queueService.queueData
+      .subscribe(
+        list => this.handleData(list),
+        error => this.handleError(error)
+      )
   }
 
   unsubscribe() {
@@ -35,7 +39,7 @@ export class CustomersComponent implements OnInit, OnDestroy {
     this.changeDetectorRef.markForCheck();
   }
 
-
+  //noinspection JSUnusedGlobalSymbols,JSMethodCanBeStatic
   handleError(error) {
     return Observable.throw(error);
   }

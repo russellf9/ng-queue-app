@@ -16,20 +16,24 @@ export class TimeComponent implements OnInit, OnDestroy{
 
   constructor(private timeService:TimeService) {}
 
-  handleData(list: List<Time>) {
-    this.time = list.get(-1);
-  }
-
-  handleError(error) {
-    return Observable.throw(error);
-  }
-
   subscribe() {
-    this.timeService.times.subscribe(this.handleData, this.handleError, () => {})
+    this.timeService.times.subscribe(
+      list => this.handleData(list),
+      error => this.handleError(error)
+    )
   }
 
   unsubscribe() {
     this.timeService.times.unsubscribe();
+  }
+
+  handleData(list: List<Time>) {
+    this.time = list.get(-1);
+  }
+
+  //noinspection JSMethodCanBeStatic
+  handleError(error) {
+    return Observable.throw(error);
   }
 
   //noinspection JSUnusedGlobalSymbols

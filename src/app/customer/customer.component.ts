@@ -1,6 +1,7 @@
-import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
-import {CustomerService} from './customer.service';
-import {Product} from '../product/product.model';
+import {Component, Input, Output, EventEmitter, ChangeDetectorRef, ChangeDetectionStrategy} from "@angular/core";
+import {Observable} from "rxjs/Observable";
+import {CustomerService} from "./customer.service";
+import {Product} from "../product/product.model";
 import {ProductService} from "../product/product.service";
 
 @Component({
@@ -11,7 +12,7 @@ import {ProductService} from "../product/product.service";
   providers: [CustomerService, ProductService]
 })
 
-export class CustomerComponent {
+export class CustomerComponent  {
 
   @Input() id:string;
   @Input() name:string;
@@ -30,10 +31,20 @@ export class CustomerComponent {
               private changeDetectorRef:ChangeDetectorRef) {
 
     this.productService.getProducts()
-      .subscribe((products) => {
-        this.products = products;
-        this.changeDetectorRef.markForCheck();
-      });
+      .subscribe(
+        products => this.handleData(products),
+        error => this.handleError(error)
+      )
+  }
+
+  handleData = function(products):void {
+    this.products = products;
+    this.changeDetectorRef.markForCheck();
+  };
+
+  //noinspection JSMethodCanBeStatic
+  handleError(error) {
+    return Observable.throw(error);
   }
 
   updateProduct = function (product):void {
@@ -46,10 +57,10 @@ export class CustomerComponent {
       joinedTime: this.joinedTime
     };
     this.customerService.updateCustomer(customer)
-      .subscribe(() => {
-        this.loading = false;
-      },
-        error => console.error(error)
+      .subscribe(
+        () => {},
+        error => this.handleError(error),
+        () => this.loading = false,
       )
   };
 
@@ -57,20 +68,20 @@ export class CustomerComponent {
   serve() {
     this.loading = true;
     this.customerService.serveCustomer(this.id)
-      .subscribe(() => {
-          this.loading = false;
-        },
-        error => console.error(error)
+      .subscribe(
+        () => {},
+        error => this.handleError(error),
+        () => this.loading = false,
       )
   }
 
   remove() {
     this.loading = true;
     this.customerService.deleteCustomer(this.id)
-      .subscribe(() => {
-        this.loading = false;
-      },
-        error => console.error(error)
+      .subscribe(
+        () => {},
+        error => this.handleError(error),
+        () => this.loading = false,
       )
   }
 }
