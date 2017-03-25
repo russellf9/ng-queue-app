@@ -1,16 +1,29 @@
-var express = require('express');
-var uuid = require('node-uuid');
-var bodyParser = require('body-parser');
-var http = require('http');
-var app = module.exports.app = express();
+/* global console */
+
+let express = require('express'),
+  uuid = require('node-uuid'),
+  console = require('console'),
+  bodyParser = require('body-parser'),
+  methodOverride = require('method-override'),
+  http = require('http');
+
+const app = module.exports.app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use('/', express.static(__dirname + '/../dist'));
+app.use(methodOverride());
+app.use('/', express.static(`${__dirname}/../dist`));
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!')
+});
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 
-var io = require('socket.io').listen(server);  //pass a http.Server instance
+
+// ==== SOCKET IO ====
+
+const io = require('socket.io').listen(server);  //pass a http.Server instance
 
 io.on('connection', (socket) => {
   socket.on('handshake', () => {
@@ -20,15 +33,13 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
-
 });
 
 
-server.listen(3000, function () {
+server.listen(3000, () => {
   console.log('App listening on port 3000!');
   setTimeout(sendTime, 3000);
 });
-
 
 
 // Send current time to all connected clients
@@ -49,71 +60,72 @@ function sendUpdate(type) {
 setInterval(sendTime, 1000);
 
 
-var customers = [
-  {
-    name: 'William Shakespeare',
-    product: {name: 'Grammatical advice'},
-    id: uuid.v4(),
-    joinedTime: new Date().toString()
-  },
-  {
-    name: 'Sherlock Holmes',
-    product: {name: 'Magnifying glass repair'},
-    id: uuid.v4(),
-    joinedTime: new Date().toString()
-  },
-  {
-    name: 'Allan Turing',
-    product: {name: 'Cryptography advice'},
-    id: uuid.v4(),
-    joinedTime: new Date().toString()
-  }
-];
+// ==== CREATE ORIGINAL DATA ====
 
-
-var products = [
+let products = [
   {
     id: 1,
+    name: 'Grammatical advice',
+    price: 100
+  },
+  {
+    id: 2,
+    name: 'Cryptography advice',
+    price: 1000
+  },
+  {
+    id: 3,
+    name: 'Magnifying glass repair',
+    price: 50
+  },
+
+  {
+    id: 4,
     name: 'GOF Design Patterns',
     price: '99'
   },
   {
-    id: 2,
+    id: 5,
     name: 'Geiger Counter',
     price: '2999'
   },
   {
-    id: 3,
+    id: 6,
     name: 'Moog Synthesiser',
     price: '275'
   }
 ];
 
+let customers = [
+  {
+    name: 'William Shakespeare',
+    product: products[0],
+    id: uuid.v4(),
+    joinedTime: new Date().toString()
+  },
+  {
+    name: 'Sherlock Holmes',
+    product: products[1],
+    id: uuid.v4(),
+    joinedTime: new Date().toString()
+  },
+  {
+    name: 'Allan Turing',
+    product: products[2],
+    id: uuid.v4(),
+    joinedTime: new Date().toString()
+  }
+];
+
 var customersServed = [{
   name: 'Orson Wells',
-  product: {name: 'Magnifying glass repair'},
+  product: products[1],
   id: uuid.v4(),
   status: 'served',
   joinedTime: new Date().toString()
 }];
 
-function serveCustomer(id) {
-  let customer = customers.find(customer => customer.id === id);
-  customer.status = 'served';
-  customersServed.push(customer);
-
-  customers = customers.filter((customer) => customer.id !== id);
-
-  sendUpdate('CUSTOMER_SERVED');
-}
-
-function removeCustomer(targetCustomerId) {
-  customers = customers.filter(function (customer) {
-    return customer.id !== targetCustomerId;
-  });
-
-  sendUpdate('CUSTOMER_DELETE');
-}
+// ==== CRUD ACTIONS ====
 
 function addCustomer(customer) {
   customer.id = uuid.v4();
@@ -127,49 +139,71 @@ function updateCustomer(customer) {
   sendUpdate('CUSTOMER_UPDATE');
 }
 
+function serveCustomer(id) {
+  let customer = findCustomer(id);
+  customer.status = 'served';
+  customersServed.push(customer);
+  removeCustomerFn(id);
+  sendUpdate('CUSTOMER_SERVED');
+}
+
+function removeCustomer(id) {
+  removeCustomerFn(id);
+  sendUpdate('CUSTOMER_DELETE');
+}
+
+
+// ==== UTILITY FUNCTIONS ====
+
 function findCustomer(id) {
-  customers.filter(function (customer) {
-    return customer.id === id;
-  })
+  return customers
+    .find(x => x.id === id);
 }
 
 function replaceCustomer(customer) {
-  var index = customers.findIndex(function (c) {
-    return c.id === customer.id;
-  });
+  var index = customers
+    .findIndex(x => x.id === customer.id);
   customers[index] = customer;
 }
 
-// ==== Handle requests ====
-app.get('/api/customers', function (req, res) {
+function removeCustomerFn(id) {
+  customers = customers
+    .filter(x => x.id !== id);
+}
+// ==== HANDLE REQUESTS ====
+
+app.get('/api/customers', (req, res) => {
   res.send(customers);
 });
 
-
-app.get('/api/customers/served', function (req, res) {
+app.get('/api/customers/served', (req, res) => {
   res.send(customersServed);
 });
 
-
-app.get('/api/products', function (req, res) {
+app.get('/api/products', (req, res) => {
   res.send(products);
 });
 
 
-app.post('/api/customer/add', function (req, res) {
+// ==== CUSTOMER ====
+
+app.post('/api/customer', (req, res) => {
   addCustomer(req.body);
   res.end('Customer was added!');
 });
-app.put('/api/customer', function (req, res) {
+
+app.put('/api/customer', (req, res) => {
   updateCustomer(req.body);
   res.end('Customer was updated!');
 });
-app.post('/api/customer/serve', function (req, res) {
+
+app.put('/api/customer/serve', (req, res) => {
   serveCustomer(req.body.id);
   res.end('Customer was served!');
 });
-app.post('/api/customer/remove', function (req, res) {
-  removeCustomer(req.body.id);
+
+app.delete('/api/customer', (req, res) => {
+  removeCustomer(req.query.id);
   res.end('Customer was removed!');
 });
 

@@ -3,13 +3,12 @@ import {List} from "immutable";
 import {BehaviorSubject} from "rxjs/Rx";
 import * as io from "socket.io-client";
 
+export const HOST:string = '127.0.0.1:3000/';
 
 @Injectable()
 export class QueueService {
 
   socket:any;
-
-  host:string = 'http://localhost:3000/';
 
   private _queueData:BehaviorSubject<List<any>> = new BehaviorSubject(List([]));
 
@@ -23,7 +22,7 @@ export class QueueService {
 
   addSocket():void {
 
-    this.socket = io(this.host);
+    this.socket = io(HOST);
 
     this.socket.on('connect', () => {
       this.socket.emit('handshake', {});
@@ -35,7 +34,6 @@ export class QueueService {
   }
 
   update(data) {
-    console.log('QueueService -> update ', data);
     this._queueData.next(this._queueData.getValue().push({queueData: data}));
   }
 }

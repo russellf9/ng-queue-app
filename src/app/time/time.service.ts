@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {List} from "immutable";
 import {BehaviorSubject} from "rxjs/Rx";
 import * as io from "socket.io-client";
+import {HOST} from "./../queue/queue.service";
 import {Time} from "./../time/time.model";
 import * as moment from "moment";
 
@@ -10,8 +11,6 @@ import * as moment from "moment";
 export class TimeService {
 
   socket:any;
-
-  host:string = 'http://localhost:3000/';
 
   private _times: BehaviorSubject<List<Time>> = new BehaviorSubject(List([]));
 
@@ -25,7 +24,7 @@ export class TimeService {
 
   addSocket():void {
 
-    this.socket = io(this.host);
+    this.socket = io(HOST);
 
     this.socket.on('connect', function () {
     }.bind(this));
