@@ -20,6 +20,7 @@ export class CustomerComponent  {
   @Input() notes:string;
   @Input() status:string;
   @Input() joinedTime:string;
+  @Input() showPushBack: boolean;
 
   @Output() onUpdate = new EventEmitter();
 
@@ -37,15 +38,6 @@ export class CustomerComponent  {
       )
   }
 
-  handleData = function(products):void {
-    this.products = products;
-    this.changeDetectorRef.markForCheck();
-  };
-
-  //noinspection JSMethodCanBeStatic
-  handleError(error) {
-    return Observable.throw(error);
-  }
 
   updateProduct = function (product):void {
     var customer = {
@@ -84,6 +76,29 @@ export class CustomerComponent  {
         () => this.loading = false,
       )
   }
+
+  pushBack() {
+    this.loading = true;
+    this.customerService.pushBackCustomer(this.id)
+      .subscribe(
+        () => {},
+        error => this.handleError(error),
+        () => this.loading = false,
+      )
+  }
+
+  // ==== UTILITY FUNCTIONS ====
+
+  handleData = function(products):void {
+    this.products = products;
+    this.changeDetectorRef.markForCheck();
+  };
+
+  //noinspection JSMethodCanBeStatic
+  handleError(error) {
+    return Observable.throw(error);
+  }
+
 }
 
 

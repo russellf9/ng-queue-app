@@ -147,6 +147,14 @@ function serveCustomer(id) {
   sendUpdate('CUSTOMER_SERVED');
 }
 
+function pushBackCustomer(id) {
+  let customer = findCustomer(id);
+  let index = getCustomerIndex(customer);
+  removeCustomerFn(id);
+  insertCustomerInNextPosition(customer, index);
+  sendUpdate('CUSTOMER_PUSH_BACK');
+}
+
 function removeCustomer(id) {
   removeCustomerFn(id);
   sendUpdate('CUSTOMER_DELETE');
@@ -169,6 +177,18 @@ function replaceCustomer(customer) {
 function removeCustomerFn(id) {
   customers = customers
     .filter(x => x.id !== id);
+}
+
+function insertCustomerInNextPosition(customer, index) {
+  insertItem(customers, index +1, customer);
+}
+
+function getCustomerIndex(customer) {
+  return customers.indexOf(customer);
+}
+
+function insertItem(array, index, item) {
+  array.splice(index, 0, item);
 }
 // ==== HANDLE REQUESTS ====
 
@@ -200,6 +220,11 @@ app.put('/api/customer', (req, res) => {
 app.put('/api/customer/serve', (req, res) => {
   serveCustomer(req.body.id);
   res.end('Customer was served!');
+});
+
+app.put('/api/customer/pushBack', (req, res) => {
+  pushBackCustomer(req.body.id);
+  res.end('Customer was pushed back in the Queue!');
 });
 
 app.delete('/api/customer', (req, res) => {

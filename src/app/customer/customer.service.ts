@@ -7,6 +7,7 @@ import 'rxjs/add/operator/filter';
 
 const API_CUSTOMER:string = '/api/customer';
 const API_CUSTOMER_SERVE:string = '/api/customer/serve';
+const API_CUSTOMER_PUSH_BACK: string = '/api/customer/pushBack';
 
 @Injectable()
 export class CustomerService {
@@ -35,6 +36,11 @@ export class CustomerService {
   serveCustomer(id):Observable<any> {
     let param = {'id': id};
     return this.updateService(API_CUSTOMER_SERVE, param);
+  }
+
+  pushBackCustomer(id):Observable<any> {
+    let param = {'id': id};
+    return this.updateService(API_CUSTOMER_PUSH_BACK, param);
   }
 
   deleteCustomer(id):Observable<any> {

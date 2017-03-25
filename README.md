@@ -91,13 +91,15 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [X] Add external library (moment.js) to display Joined Time
 * [ ] Find the definitive NG2 style guide
 * [ ] Add a `pipe' (filter)
-* [ ] Make the ' [app.js]() ' file ES6 style
-* [ ] Backend - use DELETE function
-* [ ] Improve the API ( DELETE /customer, UPDATE /customer etc)
+* [X] Make the ' [app.js]() ' file ES6 style
+* [X] Backend - use DELETE function
+* [X] Improve the API ( DELETE /customer, UPDATE /customer etc)
 * [ ] Sort Customer Add form out (Make fields required etc)
 * [ ] Add validators to the form
 * [ ] Customer - Add Call Back functionality
-* [ ] Customer - Add Push Back functionality (Change order in queue)
+* [X] Customer - Add Push Back functionality (Change order in queue)
+* [ ] UI - Add served time
+* [ ] UI - Make columns scrollable
 
 ##
 

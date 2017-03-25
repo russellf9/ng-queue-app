@@ -20,6 +20,18 @@ export class QueueService {
     return this._queueData;
   }
 
+
+  parseData(data) {
+    this.parseCustomers(data.customers);
+  }
+
+  parseCustomers(customers) {
+    let len = customers.length;
+    for (let customer of customers) {
+      customer.showPushBack = customers.indexOf(customer) !== len -1 ? true : false;
+    }
+  }
+
   addSocket():void {
 
     this.socket = io(HOST);
@@ -29,6 +41,7 @@ export class QueueService {
     });
 
     this.socket.on('update', (data) => {
+      this.parseData(data);
       this.update(data);
     });
   }
