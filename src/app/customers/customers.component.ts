@@ -20,6 +20,8 @@ export class CustomersComponent implements OnInit, OnDestroy {
   constructor(private changeDetectorRef:ChangeDetectorRef, private queueService:QueueService) {
   }
 
+  // ==== SUBSCRIPTION ====
+
   subscribe() {
     this.queueService.queueData
       .subscribe(

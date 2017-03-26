@@ -100,6 +100,7 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [X] Customer - Add Push Back functionality (Change order in queue)
 * [ ] UI - Add served time
 * [ ] UI - Make columns scrollable
+* [ ] UI - Add more random images or something more generic
 
 ##
 
