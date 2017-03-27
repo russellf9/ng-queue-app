@@ -76,7 +76,7 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [X] Add action to Add Customer to the Queue
 * [X] Add a Watch to the build prod task
 * [X] [Create a Service to provide an Observable to supply the Queue data]()
-* [ ] Replace HTTP call in Product Service
+* [X] Replace HTTP call in Product Service
 * [ ] Get the prod to do a Live reload
 * [ ] Make specific Object types - is Customer type and cast response as that type
 * [ ] Use Interface for Model? (Research best approach)

@@ -27,8 +27,8 @@
         "./../node_modules/immutable/dist/immutable.js",
         "./../node_modules/angular2-moment/index.js"
       ],
+      "environmentSource": "environments/environment.ts",
       "environments": {
-        "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
