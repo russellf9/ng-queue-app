@@ -1,27 +1,30 @@
-import {Component, ChangeDetectorRef} from "@angular/core";
-import {Observable} from "rxjs/Observable";
+import {Component, ChangeDetectorRef, Injector, ChangeDetectionStrategy} from "@angular/core";
 import {CustomerService} from "../customer/customer.service";
+import {AbstractComponent} from "../abstract/abstract.component";
 import {Product} from "../product/product.model";
 import {List} from "immutable";
 import {QueueService} from "../queue/queue.service";
 
-
 @Component({
   selector: 'customer-add',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './customer-add.component.html',
   styleUrls: ['./customer-add.component.scss'],
   providers: [CustomerService, QueueService]
 })
-export class CustomerAdd {
+export class CustomerAdd extends AbstractComponent {
 
   product:Product;
   products:Product[];
   loading:Boolean;
 
-  constructor(private customerService:CustomerService,
-              private queueService:QueueService,
-              private changeDetectorRef:ChangeDetectorRef
-              ) {}
+
+  private customerService:CustomerService;
+
+  constructor(private changeDetectorRef:ChangeDetectorRef, protected injector:Injector) {
+    super();
+    this.customerService = new CustomerService(injector);
+  }
 
 
   // ==== ACTIONS ====
@@ -42,57 +45,26 @@ export class CustomerAdd {
 
     this.customerService.addCustomer(customer)
       .subscribe(() => {
-        this.loading = false;
-        this.setDefaultProduct();
-      }, error => this.handleError(error),
+          this.loading = false;
+          this.setDefaultProduct();
+        }, error => this.handleError(error),
       )
   }
 
   // ==== DATA ====
 
-  handleData(list: List<any>) {
+  handleData(list:List<any>) {
     let data = list.get(-1);
     this.products = data && data.queueData ? data.queueData.products : [];
     if (this.products && !this.product) {
       this.setDefaultProduct();
     }
-    this.changeDetectorRef.markForCheck();
   }
 
-
-  // ==== SUBSCRIPTION ====
-
-  subscribe() {
-    this.queueService.queueData
-      .subscribe(
-        list => this.handleData(list),
-        error => this.handleError(error)
-      )
-  }
-  unsubscribe() {
-    this.queueService.queueData.unsubscribe();
-  }
-
-  //noinspection JSMethodCanBeStatic
-  handleError(error) {
-    return Observable.throw(error);
-  }
-
-  // ==== INTERFACE IMPLEMENTATION ====
-
-  //noinspection JSUnusedGlobalSymbols
-  ngOnInit() {
-    this.subscribe();
-  }
-
-  //noinspection JSUnusedGlobalSymbols
-  ngOnDestroy() {
-    this.unsubscribe();
-  }
 
   // ==== UTILITY FUNCTIONS ====
 
-  setDefaultProduct = function() {
+  setDefaultProduct = function () {
     //noinspection TypeScriptUnresolvedVariable
     this.product = this.products[0];
   };

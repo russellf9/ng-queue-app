@@ -12,7 +12,7 @@ import {ProductService} from "../product/product.service";
   providers: [CustomerService, ProductService]
 })
 
-export class CustomerComponent  {
+export class CustomerComponent {
 
   @Input() id:string;
   @Input() name:string;
@@ -20,7 +20,7 @@ export class CustomerComponent  {
   @Input() notes:string;
   @Input() status:string;
   @Input() joinedTime:string;
-  @Input() showPushBack: boolean;
+  @Input() showPushBack:boolean;
 
   @Output() onUpdate = new EventEmitter();
 
@@ -38,6 +38,7 @@ export class CustomerComponent  {
       )
   }
 
+  // ==== ACTIONS ====
 
   updateProduct = function (product):void {
     var customer = {
@@ -50,7 +51,8 @@ export class CustomerComponent  {
     };
     this.customerService.updateCustomer(customer)
       .subscribe(
-        () => {},
+        () => {
+        },
         error => this.handleError(error),
         () => this.loading = false,
       )
@@ -61,7 +63,8 @@ export class CustomerComponent  {
     this.loading = true;
     this.customerService.serveCustomer(this.id)
       .subscribe(
-        () => {},
+        () => {
+        },
         error => this.handleError(error),
         () => this.loading = false,
       )
@@ -71,7 +74,8 @@ export class CustomerComponent  {
     this.loading = true;
     this.customerService.deleteCustomer(this.id)
       .subscribe(
-        () => {},
+        () => {
+        },
         error => this.handleError(error),
         () => this.loading = false,
       )
@@ -81,7 +85,8 @@ export class CustomerComponent  {
     this.loading = true;
     this.customerService.pushBackCustomer(this.id)
       .subscribe(
-        () => {},
+        () => {
+        },
         error => this.handleError(error),
         () => this.loading = false,
       )
@@ -89,7 +94,7 @@ export class CustomerComponent  {
 
   // ==== UTILITY FUNCTIONS ====
 
-  handleData = function(products):void {
+  handleData = function (products):void {
     this.products = products;
     this.changeDetectorRef.markForCheck();
   };

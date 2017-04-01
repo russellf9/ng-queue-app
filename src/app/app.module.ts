@@ -26,6 +26,7 @@ import { TimeService } from './time/time.service';
 import { TimeComponent } from './time-display/time.component';
 
 import {MomentModule} from 'angular2-moment';
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {MomentModule} from 'angular2-moment';
     CustomerAdd,
     ProductList,
     ProductComponent,
-    TimeComponent
+    TimeComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

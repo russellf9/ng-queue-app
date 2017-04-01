@@ -1,13 +1,12 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {Http, Headers, Response, RequestOptions} from '@angular/http';
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/filter';
+import {Injectable, Injector} from "@angular/core";
+import {Observable} from "rxjs/Observable";
+import {Http, Headers, Response, RequestOptions} from "@angular/http";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/filter";
 
 const API_CUSTOMER:string = '/api/customer';
 const API_CUSTOMER_SERVE:string = '/api/customer/serve';
-const API_CUSTOMER_PUSH_BACK: string = '/api/customer/pushBack';
+const API_CUSTOMER_PUSH_BACK:string = '/api/customer/pushBack';
 
 @Injectable()
 export class CustomerService {
@@ -15,13 +14,19 @@ export class CustomerService {
   headers:Headers;
   options:RequestOptions;
 
-  constructor(private http:Http) {
+  http:Http;
+
+
+  constructor(protected injector:Injector) {
     this.headers = new Headers({
       'Content-Type': 'application/json',
       'Accept': 'q=0.8;application/json;q=0.9'
     });
     this.options = new RequestOptions({headers: this.headers});
+
+    this.http = this.injector.get(Http);
   }
+
 
   // ==== CUSTOMER ACTIONS ====
 
