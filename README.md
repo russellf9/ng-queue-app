@@ -77,6 +77,14 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [X] Add a Watch to the build prod task
 * [X] [Create a Service to provide an Observable to supply the Queue data]()
 * [X] Replace HTTP call in Product Service
+* [X] Add external library (moment.js) to display Joined Time
+* [X] Make the ' [app.js]() ' file ES6 style
+* [X] Backend - use DELETE function
+* [X] Customer - Add Push Back functionality (Change order in queue)
+* [X] Improve the API ( DELETE /customer, UPDATE /customer etc)
+* [X] UI - Make columns scrollable
+* [ ] Resolve issue with Moment.js - [vendor.bundle.js:600 Deprecation warning: value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date()](http://momentjs.com/guides/#/warnings/js-date/)
+* [ ] Add a `pipe' (filter)
 * [ ] Get the prod to do a Live reload
 * [ ] Make specific Object types - is Customer type and cast response as that type
 * [ ] Use Interface for Model? (Research best approach)
@@ -88,18 +96,11 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [ ] Add and document debugging system (see Evernote)
 * [ ] And code verification to the build task
 * [ ] Add code style verification to the build task (hint)
-* [X] Add external library (moment.js) to display Joined Time
 * [ ] Find the definitive NG2 style guide
-* [ ] Add a `pipe' (filter)
-* [X] Make the ' [app.js]() ' file ES6 style
-* [X] Backend - use DELETE function
-* [X] Improve the API ( DELETE /customer, UPDATE /customer etc)
 * [ ] Sort Customer Add form out (Make fields required etc)
 * [ ] Add validators to the form
 * [ ] Customer - Add Call Back functionality
-* [X] Customer - Add Push Back functionality (Change order in queue)
 * [ ] UI - Add served time
-* [ ] UI - Make columns scrollable
 * [ ] UI - Add more random images or something more generic
 
 ##

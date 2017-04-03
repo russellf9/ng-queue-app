@@ -122,7 +122,8 @@ var customersServed = [{
   product: products[1],
   id: uuid.v4(),
   status: 'served',
-  joinedTime: new Date().toString()
+  joinedTime: new Date().toString(),
+  servedTime: new Date().toString()
 }];
 
 // ==== CRUD ACTIONS ====
@@ -142,10 +143,12 @@ function updateCustomer(customer) {
 function serveCustomer(id) {
   let customer = findCustomer(id);
   customer.status = 'served';
+  customer.servedTime = new Date().toString();
   customersServed.push(customer);
   removeCustomerFn(id);
   sendUpdate('CUSTOMER_SERVED');
 }
+
 
 function pushBackCustomer(id) {
   let customer = findCustomer(id);

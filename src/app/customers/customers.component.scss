@@ -1,10 +1,11 @@
-.customers {
-  color: blue;
-}
-.cards--customers {
+@import '../css/partials/variables';
 
-}
+.customers { }
+
+.cards--customers {}
 
 .segment--customers {
   min-height: 375px;
+  max-height: calc(100vh - #{$header-height});
+  overflow-y: scroll;
 }

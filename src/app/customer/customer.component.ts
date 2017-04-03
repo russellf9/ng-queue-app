@@ -20,6 +20,7 @@ export class CustomerComponent {
   @Input() notes:string;
   @Input() status:string;
   @Input() joinedTime:string;
+  @Input() servedTime:string;
   @Input() showPushBack:boolean;
 
   @Output() onUpdate = new EventEmitter();

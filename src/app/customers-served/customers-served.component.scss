@@ -1,3 +1,7 @@
-.test {
-  color: red;
+@import '../css/partials/variables';
+
+.segment--customers {
+  min-height: 375px;
+  max-height: calc(100vh - #{$header-height});
+  overflow-y: scroll;
 }
