@@ -13,7 +13,6 @@ import {QueueService} from "./queue/queue.service";
 import {ProductService} from "./product/product.service";
 import {ProductComponent} from "./product/product.component";
 import {Product} from "./product/product.model";
-import {MessageService} from "./message/message.service";
 import {TimeService} from "./time/time.service";
 import {TimeComponent} from "./time-display/time.component";
 import {MomentModule} from "angular2-moment";
@@ -42,7 +41,6 @@ import {MomentModule} from "angular2-moment";
     CustomerService,
     ProductService,
     Product,
-    MessageService,
     TimeService
   ],
   bootstrap: [AppComponent]

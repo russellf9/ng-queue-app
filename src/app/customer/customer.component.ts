@@ -4,6 +4,8 @@ import {CustomerService} from "./customer.service";
 import {Product} from "../product/product.model";
 import {ProductService} from "../product/product.service";
 
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-customer',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,12 +27,16 @@ export class CustomerComponent {
 
   @Output() onUpdate = new EventEmitter();
 
+  today: any;
   loading:Boolean;
   products:Product[];
 
   constructor(private customerService:CustomerService,
               private productService:ProductService,
               private changeDetectorRef:ChangeDetectorRef) {
+
+    let date = new Date();
+    this.today = moment(date, 'D ha');
 
     this.productService.getProducts()
       .subscribe(

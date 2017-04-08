@@ -19,10 +19,10 @@
       <p> {{ product.name }} </p>
     </div>
     <div>
-      <p class="small"> Joined queue - {{ joinedTime | amCalendar }}</p>
+      <p class="small"> Joined queue - {{ joinedTime | amCalendar : today}}</p>
     </div>
     <div *ngIf="status === 'served'">
-      <p class="small"> Time Served - {{ servedTime | amCalendar }}</p>
+      <p class="small"> Time Served - {{ servedTime | amCalendar : today}}</p>
     </div>
     <div class="extra content">
       <div class="ui two buttons" *ngIf="status !== 'served'"
