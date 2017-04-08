@@ -59,6 +59,7 @@ export class CustomerAdd extends AbstractComponent {
     if (this.products && !this.product) {
       this.setDefaultProduct();
     }
+    this.changeDetectorRef.markForCheck();
   }
 
 
