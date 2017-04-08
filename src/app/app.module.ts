@@ -17,7 +17,6 @@ import {MessageService} from "./message/message.service";
 import {TimeService} from "./time/time.service";
 import {TimeComponent} from "./time-display/time.component";
 import {MomentModule} from "angular2-moment";
-import {TestComponent} from "./test/test.component";
 
 
 @NgModule({
@@ -29,8 +28,7 @@ import {TestComponent} from "./test/test.component";
     CustomerAdd,
     ProductListComponent,
     ProductComponent,
-    TimeComponent,
-    TestComponent
+    TimeComponent
   ],
   imports: [
     BrowserModule,
