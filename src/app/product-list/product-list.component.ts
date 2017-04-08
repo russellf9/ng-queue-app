@@ -8,7 +8,7 @@ declare var $:any;
   templateUrl: './product-list.html',
   styleUrls: ['./product-list.scss']
 })
-export class ProductList implements OnInit {
+export class ProductListComponent implements OnInit {
 
   @Input() products: Product[];
   @Input() selectedProduct: Product;

@@ -83,6 +83,9 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [X] Customer - Add Push Back functionality (Change order in queue)
 * [X] Improve the API ( DELETE /customer, UPDATE /customer etc)
 * [X] UI - Make columns scrollable
+* [X] Update to Angular 4
+* [ ] Fix bug with the Product list in `Add Customer`
+
 * [ ] Resolve issue with Moment.js - [vendor.bundle.js:600 Deprecation warning: value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date()](http://momentjs.com/guides/#/warnings/js-date/)
 * [ ] Add a `pipe' (filter)
 * [ ] Get the prod to do a Live reload

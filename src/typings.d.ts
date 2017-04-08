@@ -9,7 +9,3 @@ declare module 'socket.io-client' {
 }
 
 
-declare module 'moment' {
-  var e: any;
-  export = e;
-}
