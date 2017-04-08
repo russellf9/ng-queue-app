@@ -3,6 +3,7 @@ import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import {List} from "immutable";
 import {QueueService} from "../queue/queue.service";
+import {NamePipe} from "../name-filter/name.pipe";
 
 @Component({
   selector: 'app-customers',
@@ -10,14 +11,38 @@ import {QueueService} from "../queue/queue.service";
   templateUrl: './customers.component.html',
   styleUrls: ['./../app.component.scss',
     './customers.component.scss'],
-  providers: [QueueService]
+  providers: [QueueService, NamePipe]
 })
 export class CustomersComponent implements OnInit, OnDestroy {
 
-  customers:Object;
+  customers:Array<any>;
+  filteredCustomers:Array<any>;
+  search:String = '';
   loading:Boolean;
 
-  constructor(private changeDetectorRef:ChangeDetectorRef, private queueService:QueueService) {
+  constructor(private changeDetectorRef:ChangeDetectorRef,
+              private queueService:QueueService,
+              private namePipe:NamePipe) {
+  }
+
+  // ==== EVENTS ====
+
+  updateSearch(event) {
+    this.search = event;
+    this.filterCustomers();
+  }
+
+  clearSearch() {
+    this.search = '';
+    this.filterCustomers();
+  }
+
+  // ==== UTILITY FUNCTIONS ====
+
+  filterCustomers() {
+    this.filteredCustomers = this.customers
+      .filter(customer => this.namePipe.transform(customer, this.search));
+    this.changeDetectorRef.markForCheck();
   }
 
   // ==== SUBSCRIPTION ====
@@ -35,10 +60,11 @@ export class CustomersComponent implements OnInit, OnDestroy {
   }
 
 
-  handleData(list: List<any>) {
-    let data  = list.get(-1);
-    this.customers = data && data.queueData ? data.queueData.customers : [];
-    this.changeDetectorRef.markForCheck();
+  handleData(list:List<any>) {
+    let data = list.get(-1);
+    let customersObj = data && data.queueData ? data.queueData.customers : [];
+    this.customers = Array.from(customersObj, x => x);
+    this.filterCustomers();
   }
 
   //noinspection JSUnusedGlobalSymbols,JSMethodCanBeStatic
