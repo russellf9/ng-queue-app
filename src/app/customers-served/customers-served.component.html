@@ -1,7 +1,11 @@
 <div class="ui segment segment--customers">
   <h2 class="ui header">Customers Served</h2>
+  <div class="ui search">
+    <search (onUpdate)="updateSearch($event)">
+    </search>
+  </div>
   <app-customer class="ui cards cards--customers"
-                *ngFor="let customer of customersServed"
+                *ngFor="let customer of filteredCustomers"
                 [id]="customer.id"
                 [name]="customer.name"
                 [product]="customer.product"

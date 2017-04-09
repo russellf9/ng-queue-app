@@ -1,0 +1,24 @@
+<div class="ui segment">
+  <div class="ui grid">
+    <div class="twelve wide column">
+      <div class="ui category search">
+        <div class="ui icon input">
+          <input class="prompt"
+                 type="text"
+                 name="search"
+                 [ngModel]="search"
+                 (ngModelChange)="updateSearch($event)"
+                 placeholder="Search Customers...">
+          <i class="search icon"></i>
+        </div>
+        <div class="results"></div>
+      </div>
+    </div>
+    <div class="four wide column">
+      <button class="ui icon right floated button"
+              (click)="clearSearch()">
+        <i class="remove icon"></i>
+      </button>
+    </div>
+  </div>
+</div>

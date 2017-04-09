@@ -32,10 +32,6 @@ export class CustomersComponent implements OnInit, OnDestroy {
     this.filterCustomers();
   }
 
-  clearSearch() {
-    this.search = '';
-    this.filterCustomers();
-  }
 
   // ==== UTILITY FUNCTIONS ====
 
