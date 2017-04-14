@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable} from "@angular/core";
 import {List} from "immutable";
 import {BehaviorSubject} from "rxjs/Rx";
 import * as io from "socket.io-client";
@@ -12,12 +12,14 @@ export class QueueService {
 
   private _queueData:BehaviorSubject<List<any>> = new BehaviorSubject(List([]));
 
+
   constructor() {
     this.addSocket();
   }
 
+
   get queueData() {
-    return this._queueData;
+    return this._queueData.asObservable();
   }
 
 
@@ -28,7 +30,7 @@ export class QueueService {
   parseCustomers(customers) {
     let len = customers.length;
     for (let customer of customers) {
-      customer.showPushBack = customers.indexOf(customer) !== len -1 ? true : false;
+      customer.showPushBack = customers.indexOf(customer) !== len - 1 ? true : false;
     }
   }
 

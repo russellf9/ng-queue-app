@@ -20,6 +20,7 @@ export class CustomersComponent implements OnInit, OnDestroy {
   search:String = '';
   loading:Boolean;
 
+
   constructor(private changeDetectorRef:ChangeDetectorRef,
               private queueService:QueueService,
               private namePipe:NamePipe) {
@@ -52,7 +53,7 @@ export class CustomersComponent implements OnInit, OnDestroy {
   }
 
   unsubscribe() {
-    this.queueService.queueData.unsubscribe();
+   // this.queueService.queueData.unsubscribe();
   }
 
 
@@ -72,6 +73,7 @@ export class CustomersComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscribe();
   }
+
 
   //noinspection JSUnusedGlobalSymbols
   ngOnDestroy() {

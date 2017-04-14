@@ -50,7 +50,7 @@ export class CustomersServed implements OnInit, OnDestroy {
   }
 
   unsubscribe() {
-    this.queueService.queueData.unsubscribe();
+    // this.queueService.queueData.unsubscribe();
   }
 
 

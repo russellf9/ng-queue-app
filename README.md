@@ -89,6 +89,8 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [ ] Resolve issue with Moment.js - [vendor.bundle.js:600 Deprecation warning: value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date()](http://momentjs.com/guides/#/warnings/js-date/)
 * [X] Add a `pipe' (filter)
 * [X] Make the Search UI into a Shared Component
+* [X] UI - Add served time
+* [ ] Improve UI that shows the time
 * [ ] Get the prod to do a Live reload
 * [ ] Make specific Object types - is Customer type and cast response as that type
 * [ ] Use Interface for Model? (Research best approach)
@@ -104,7 +106,6 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [ ] Sort Customer Add form out (Make fields required etc)
 * [ ] Add validators to the form
 * [ ] Customer - Add Call Back functionality
-* [ ] UI - Add served time
 * [ ] UI - Add more random images or something more generic
 
 ##

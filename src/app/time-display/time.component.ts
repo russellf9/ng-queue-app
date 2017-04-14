@@ -1,7 +1,5 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
 import {TimeService} from "./../time/time.service";
-import {Observable} from "rxjs/Observable";
-import {List} from "immutable";
 import {Time} from "./../time/time.model";
 
 @Component({
@@ -10,31 +8,23 @@ import {Time} from "./../time/time.model";
   styleUrls: ['./time.component.scss'],
   providers: [TimeService]
 })
-export class TimeComponent implements OnInit, OnDestroy{
+export class TimeComponent implements OnInit, OnDestroy {
 
-  time: Time;
+  time:Time;
 
-  constructor(private timeService:TimeService) {}
+  times:Object;
+
+  constructor(private timeService:TimeService) {
+  }
 
   subscribe() {
-    this.timeService.times.subscribe(
-      list => this.handleData(list),
-      error => this.handleError(error)
-    )
+    this.timeService.time.subscribe(time => this.times = time);
   }
 
   unsubscribe() {
-    this.timeService.times.unsubscribe();
+    this.timeService.time.unsubscribe();
   }
 
-  handleData(list: List<Time>) {
-    this.time = list.get(-1);
-  }
-
-  //noinspection JSMethodCanBeStatic
-  handleError(error) {
-    return Observable.throw(error);
-  }
 
   //noinspection JSUnusedGlobalSymbols
   ngOnInit() {

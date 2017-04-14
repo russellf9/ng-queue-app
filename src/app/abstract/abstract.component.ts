@@ -45,7 +45,7 @@ export abstract class AbstractComponent implements OnInit, OnDestroy {
   }
 
   unsubscribe():void  {
-    this.queueService.queueData.unsubscribe();
+    // this.queueService.queueData.unsubscribe();
   }
 
   // ==== INTERFACE CONTRACT ====
