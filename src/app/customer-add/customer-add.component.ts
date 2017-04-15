@@ -2,7 +2,6 @@ import {Component, ChangeDetectorRef, Injector, ChangeDetectionStrategy} from "@
 import {CustomerService} from "../customer/customer.service";
 import {AbstractComponent} from "../abstract/abstract.component";
 import {Product} from "../product/product.model";
-import {List} from "immutable";
 import {QueueService} from "../queue/queue.service";
 
 @Component({
@@ -21,7 +20,8 @@ export class CustomerAdd extends AbstractComponent {
 
   private customerService:CustomerService;
 
-  constructor(private changeDetectorRef:ChangeDetectorRef, protected injector:Injector) {
+  constructor(private changeDetectorRef:ChangeDetectorRef,
+              protected injector:Injector) {
     super();
     this.customerService = new CustomerService(injector);
   }
@@ -53,12 +53,10 @@ export class CustomerAdd extends AbstractComponent {
 
   // ==== DATA ====
 
-  handleData(list:List<any>) {
-    let data = list.get(-1);
-    this.products = data && data.queueData ? data.queueData.products : [];
-    if (this.products && !this.product) {
-      this.setDefaultProduct();
-    }
+  handleData(data) {
+    super.handleData(data);
+    this.products = data.queueData.products;
+    this.setDefaultProduct();
     this.changeDetectorRef.markForCheck();
   }
 

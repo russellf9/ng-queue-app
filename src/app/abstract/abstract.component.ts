@@ -1,8 +1,7 @@
-import {Component, Injectable, OnInit, OnDestroy} from '@angular/core';
+import {Component, Injectable, OnInit, OnDestroy} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {QueueService} from "../queue/queue.service";
 import {CustomerService} from "../customer/customer.service";
-import {List} from "immutable";
 
 @Component({
   providers: [CustomerService, QueueService]
@@ -12,7 +11,7 @@ import {List} from "immutable";
 export abstract class AbstractComponent implements OnInit, OnDestroy {
 
   protected queueService:QueueService;
-  protected queueData:any;
+  protected data:Object;
 
 
   constructor() {
@@ -22,7 +21,8 @@ export abstract class AbstractComponent implements OnInit, OnDestroy {
 
   // ==== DATA ====
 
-  handleData(list:List<any>):void {
+  handleData(data):void {
+    this.data = data;
   }
 
   //noinspection JSMethodCanBeStatic
@@ -34,12 +34,15 @@ export abstract class AbstractComponent implements OnInit, OnDestroy {
 
   // ==== SUBSCRIPTION ====
 
-  subscribe():void  {
-
+  subscribe():void {
+    this.queueService.data.subscribe(
+      data => this.handleData(data),
+      error => this.handleError(error)
+    );
   }
 
   unsubscribe():void  {
-    // this.queueService.queueData.unsubscribe();
+    this.queueService.data.unsubscribe();
   }
 
   // ==== INTERFACE CONTRACT ====

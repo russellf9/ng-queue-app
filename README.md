@@ -85,7 +85,6 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [X] UI - Make columns scrollable
 * [X] Update to Angular 4
 * [X] Fix bug with the Product list in `Add Customer`
-
 * [ ] Resolve issue with Moment.js - [vendor.bundle.js:600 Deprecation warning: value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date()](http://momentjs.com/guides/#/warnings/js-date/)
 * [X] Add a `pipe' (filter)
 * [X] Make the Search UI into a Shared Component
@@ -95,13 +94,14 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [X] Use a Pipe for the Customer  name search
 * [X] Use a Pipe to replace the parsing function to show the Push back button
 * [X] Use `ReplaySubject` in the CustomersServed.component
+* [X] Use the `ReplaySubject` for the Products in the New Customer component
+* [ ] Move all the Observables to a single Data Service
 * [ ] Improve UI that shows the time
 * [ ] Get the prod to do a Live reload
 * [ ] Make specific Object types - is Customer type and cast response as that type
 * [ ] Use Interface for Model? (Research best approach)
 * [ ] Resolve moment.js imports completely - Is the 'MomentModule' really required, and are the typings being imported correctly
 * [ ] Add tests
-* [ ] Move all the Observables to a single Data Service
 * [ ] Use more functionality from Immutable.js
 * [ ] Add map files - This might be being done already
 * [ ] Add and document debugging system (see Evernote)
