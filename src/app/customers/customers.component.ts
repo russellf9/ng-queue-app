@@ -14,15 +14,12 @@ import {NamePipe} from "../name-filter/name.pipe";
 })
 export class CustomersComponent implements OnInit, OnDestroy {
 
-  customers:Array<any>;
   search:String = '';
   loading:Boolean;
-
   data:Object;
 
   constructor(private changeDetectorRef:ChangeDetectorRef,
-              private queueService:QueueService) {
-  }
+              private queueService:QueueService) {}
 
   // ==== EVENTS ====
 
@@ -35,12 +32,13 @@ export class CustomersComponent implements OnInit, OnDestroy {
 
   subscribe() {
     this.queueService.data.subscribe(
-      data => this.handleUpdate(data)
+      data => this.handleUpdate(data),
+      error => this.handleError(error)
     );
   }
 
   unsubscribe() {
-   // this.queueService.queueData.unsubscribe();
+    this.queueService.data.unsubscribe();
   }
 
   handleUpdate(data) {

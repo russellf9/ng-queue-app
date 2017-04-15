@@ -23,8 +23,6 @@ export abstract class AbstractComponent implements OnInit, OnDestroy {
   // ==== DATA ====
 
   handleData(list:List<any>):void {
-    let data = list.get(-1);
-    this.queueData = data && data.queueData ? data.queueData : [];
   }
 
   //noinspection JSMethodCanBeStatic
@@ -37,11 +35,7 @@ export abstract class AbstractComponent implements OnInit, OnDestroy {
   // ==== SUBSCRIPTION ====
 
   subscribe():void  {
-    this.queueService.queueData
-      .subscribe(
-        list => this.handleData(list),
-        error => this.handleError(error)
-      )
+
   }
 
   unsubscribe():void  {

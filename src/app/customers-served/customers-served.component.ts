@@ -14,14 +14,11 @@ import "rxjs/add/operator/map";
 export class CustomersServed implements OnInit, OnDestroy {
 
   search:String = '';
-  customers:Array<any>;
   data:Object;
-
   loading:Boolean;
 
   constructor(private changeDetectorRef:ChangeDetectorRef,
-              private queueService:QueueService) {
-  }
+              private queueService:QueueService) {}
 
 
   // ==== EVENTS ====
@@ -43,9 +40,8 @@ export class CustomersServed implements OnInit, OnDestroy {
     );
   }
 
-
   unsubscribe() {
-    // this.queueService.queueData.unsubscribe();
+    this.queueService.data.unsubscribe();
   }
 
   //noinspection JSUnusedGlobalSymbols

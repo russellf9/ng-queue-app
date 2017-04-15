@@ -20,4 +20,13 @@ I was originally using a List (from immutable.js) in the `TimeService`, but foun
 (See: [SO - Creating and returning Observable from Angular 2 Service](http://stackoverflow.com/questions/33675155/creating-and-returning-observable-from-angular-2-service) )
 
 
+Refactoring 
+
+Was use a list
+
+```
+private _queueData:BehaviorSubject<List<any>> = new BehaviorSubject(List([]));
+```
+
+
 
