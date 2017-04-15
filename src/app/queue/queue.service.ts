@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {List} from "immutable";
 import {BehaviorSubject} from "rxjs/Rx";
+import {ReplaySubject} from "rxjs";
 import * as io from "socket.io-client";
 
 export const HOST:string = '127.0.0.1:3000/';
@@ -13,6 +14,8 @@ export class QueueService {
   private _queueData:BehaviorSubject<List<any>> = new BehaviorSubject(List([]));
 
 
+  public data:ReplaySubject<any> = new ReplaySubject(1);
+
   constructor() {
     this.addSocket();
   }
@@ -23,17 +26,6 @@ export class QueueService {
   }
 
 
-  parseData(data) {
-    this.parseCustomers(data.customers);
-  }
-
-  parseCustomers(customers) {
-    let len = customers.length;
-    for (let customer of customers) {
-      customer.showPushBack = customers.indexOf(customer) !== len - 1 ? true : false;
-    }
-  }
-
   addSocket():void {
 
     this.socket = io(HOST);
@@ -43,12 +35,12 @@ export class QueueService {
     });
 
     this.socket.on('update', (data) => {
-      this.parseData(data);
       this.update(data);
     });
   }
 
   update(data) {
     this._queueData.next(this._queueData.getValue().push({queueData: data}));
+    this.data.next({queueData: data});
   }
 }

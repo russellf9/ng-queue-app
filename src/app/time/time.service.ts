@@ -11,11 +11,9 @@ export class TimeService {
 
   public time:ReplaySubject<any> = new ReplaySubject(1);
 
-
   constructor() {
     this.addSocket();
   }
-
 
   addSocket():void {
     this.socket = io(HOST);

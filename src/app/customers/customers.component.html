@@ -5,7 +5,7 @@
     </search>
   </div>
   <app-customer class="ui cards cards--customers"
-                *ngFor="let customer of filteredCustomers"
+                *ngFor="let customer of (data?.queueData.customers | name:search | showPushBack)"
                 [id]="customer.id"
                 [name]="customer.name"
                 [product]="customer.product"

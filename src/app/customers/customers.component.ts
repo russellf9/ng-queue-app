@@ -20,6 +20,7 @@ export class CustomersComponent implements OnInit, OnDestroy {
   search:String = '';
   loading:Boolean;
 
+  data:Object;
 
   constructor(private changeDetectorRef:ChangeDetectorRef,
               private queueService:QueueService,
@@ -30,7 +31,6 @@ export class CustomersComponent implements OnInit, OnDestroy {
 
   updateSearch(event) {
     this.search = event;
-    this.filterCustomers();
   }
 
 
@@ -42,6 +42,8 @@ export class CustomersComponent implements OnInit, OnDestroy {
     this.changeDetectorRef.markForCheck();
   }
 
+
+
   // ==== SUBSCRIPTION ====
 
   subscribe() {
@@ -49,7 +51,9 @@ export class CustomersComponent implements OnInit, OnDestroy {
       .subscribe(
         list => this.handleData(list),
         error => this.handleError(error)
-      )
+      );
+
+    this.queueService.data.subscribe(x => this.data = x);
   }
 
   unsubscribe() {
