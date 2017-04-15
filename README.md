@@ -94,6 +94,7 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [X] Use `ReplaySubject` in the Customers.component
 * [X] Use a Pipe for the Customer  name search
 * [X] Use a Pipe to replace the parsing function to show the Push back button
+* [X] Use `ReplaySubject` in the CustomersServed.component
 * [ ] Improve UI that shows the time
 * [ ] Get the prod to do a Live reload
 * [ ] Make specific Object types - is Customer type and cast response as that type

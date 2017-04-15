@@ -1,7 +1,6 @@
 import {Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/map";
-import {List} from "immutable";
 import {QueueService} from "../queue/queue.service";
 import {NamePipe} from "../name-filter/name.pipe";
 
@@ -16,15 +15,13 @@ import {NamePipe} from "../name-filter/name.pipe";
 export class CustomersComponent implements OnInit, OnDestroy {
 
   customers:Array<any>;
-  filteredCustomers:Array<any>;
   search:String = '';
   loading:Boolean;
 
   data:Object;
 
   constructor(private changeDetectorRef:ChangeDetectorRef,
-              private queueService:QueueService,
-              private namePipe:NamePipe) {
+              private queueService:QueueService) {
   }
 
   // ==== EVENTS ====
@@ -34,39 +31,23 @@ export class CustomersComponent implements OnInit, OnDestroy {
   }
 
 
-  // ==== UTILITY FUNCTIONS ====
-
-  filterCustomers() {
-    this.filteredCustomers = this.customers
-      .filter(customer => this.namePipe.transform(customer, this.search));
-    this.changeDetectorRef.markForCheck();
-  }
-
-
-
   // ==== SUBSCRIPTION ====
 
   subscribe() {
-    this.queueService.queueData
-      .subscribe(
-        list => this.handleData(list),
-        error => this.handleError(error)
-      );
-
-    this.queueService.data.subscribe(x => this.data = x);
+    this.queueService.data.subscribe(
+      data => this.handleUpdate(data)
+    );
   }
 
   unsubscribe() {
    // this.queueService.queueData.unsubscribe();
   }
 
-
-  handleData(list:List<any>) {
-    let data = list.get(-1);
-    let customersObj = data && data.queueData ? data.queueData.customers : [];
-    this.customers = Array.from(customersObj, x => x);
-    this.filterCustomers();
+  handleUpdate(data) {
+    this.data = data;
+    this.changeDetectorRef.markForCheck();
   }
+
 
   //noinspection JSUnusedGlobalSymbols,JSMethodCanBeStatic
   handleError(error) {
