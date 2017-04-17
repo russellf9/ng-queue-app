@@ -5,6 +5,13 @@
   min-height: $column-list-min-height;
 }
 
+.header {
+  .column {
+    padding-bottom: 1rem;
+  }
+}
+
+
 // ==== shared customers ====
 
 .segment--customers {

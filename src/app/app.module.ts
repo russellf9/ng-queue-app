@@ -20,6 +20,7 @@ import {NamePipe} from "./name-filter/name.pipe";
 import {SearchComponent} from "./search/search.component";
 import {ShowPushBackPipe} from "./customer-show-push-back/show-push-back.pipe";
 import {CustomerImageComponent} from "./customer-image/customer-image/customer-image.component";
+import { StatsComponent } from './stats/stats.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {CustomerImageComponent} from "./customer-image/customer-image/customer-i
     NamePipe,
     SearchComponent,
     ShowPushBackPipe,
-    CustomerImageComponent
+    CustomerImageComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,

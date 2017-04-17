@@ -95,11 +95,11 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [X] Use `ReplaySubject` in the CustomersServed.component
 * [X] Use the `ReplaySubject` for the Products in the New Customer component
 * [X] UI - Add more random images or something more generic
-* [ ] SASS - Rationalise more
+* [X] SASS - Rationalise more
+* [X] Improve UI that shows the time
 * [ ] Move all the Observables to a single Data Service
-* [ ] Improve UI that shows the time
-* [ ] Add UI that show the Queue Totals
-* [ ] Update the Search UI to include seraching for other property types
+* [X] Add UI that show the Queue Totals
+* [ ] Update the Search UI to include searching for other property types
 * [ ] Get the prod to do a Live reload
 * [ ] Make specific Object types - is Customer type and cast response as that type
 * [ ] Use Interface for Model? (Research best approach)
