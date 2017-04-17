@@ -85,7 +85,6 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [X] UI - Make columns scrollable
 * [X] Update to Angular 4
 * [X] Fix bug with the Product list in `Add Customer`
-* [ ] Resolve issue with Moment.js - [vendor.bundle.js:600 Deprecation warning: value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date()](http://momentjs.com/guides/#/warnings/js-date/)
 * [X] Add a `pipe' (filter)
 * [X] Make the Search UI into a Shared Component
 * [X] UI - Add served time
@@ -96,12 +95,16 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [X] Use `ReplaySubject` in the CustomersServed.component
 * [X] Use the `ReplaySubject` for the Products in the New Customer component
 * [X] UI - Add more random images or something more generic
+* [ ] SASS - Rationalise more
 * [ ] Move all the Observables to a single Data Service
 * [ ] Improve UI that shows the time
+* [ ] Add UI that show the Queue Totals
+* [ ] Update the Search UI to include seraching for other property types
 * [ ] Get the prod to do a Live reload
 * [ ] Make specific Object types - is Customer type and cast response as that type
 * [ ] Use Interface for Model? (Research best approach)
 * [ ] Resolve moment.js imports completely - Is the 'MomentModule' really required, and are the typings being imported correctly
+* [ ] Resolve issue with Moment.js - [vendor.bundle.js:600 Deprecation warning: value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date()](http://momentjs.com/guides/#/warnings/js-date/)
 * [ ] Add tests
 * [ ] Use more functionality from Immutable.js
 * [ ] Add map files - This might be being done already
@@ -112,6 +115,9 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [ ] Sort Customer Add form out (Make fields required etc)
 * [ ] Add validators to the form
 * [ ] Customer - Add Call Back functionality
+* [ ] Add better default Customers in the Node Database
+
+
 
 ##
 

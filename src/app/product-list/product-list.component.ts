@@ -5,8 +5,7 @@ declare var $:any;
 
 @Component({
   selector: 'product-list',
-  templateUrl: './product-list.html',
-  styleUrls: ['./product-list.scss']
+  templateUrl: './product-list.html'
 })
 export class ProductListComponent implements OnInit {
 

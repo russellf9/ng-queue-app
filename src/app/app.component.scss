@@ -1,20 +1,23 @@
-//@import './css/vendor/semantic.min';
+@import './css/partials/all';
 
-$red: #FF4422;
 
-.test {
-  color: $red;
-}
 .column--list {
-  min-height: 300px;
+  min-height: $column-list-min-height;
 }
 
+// ==== shared customers ====
 
 .segment--customers {
-  min-height: 375px;
+  min-height: $segment--customers-min-height;
+  max-height: calc(100vh - #{$header-height});
+  overflow-y: scroll;
 }
 
 
 .search {
-  margin-bottom: 10px;
+  margin-bottom: $search-margin-bottom;
+}
+
+.small {
+  font-size: 85%;
 }

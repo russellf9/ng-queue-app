@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'customer-image',
-  templateUrl: './customer-image.component.html',
-  styleUrls: ['./customer-image.component.scss']
+  templateUrl: './customer-image.component.html'
 })
 export class CustomerImageComponent implements OnInit {
 
