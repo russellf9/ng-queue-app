@@ -19,6 +19,7 @@ import {MomentModule} from "angular2-moment";
 import {NamePipe} from "./name-filter/name.pipe";
 import {SearchComponent} from "./search/search.component";
 import {ShowPushBackPipe} from "./customer-show-push-back/show-push-back.pipe";
+import {CustomerImageComponent} from "./customer-image/customer-image/customer-image.component";
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {ShowPushBackPipe} from "./customer-show-push-back/show-push-back.pipe";
     TimeComponent,
     NamePipe,
     SearchComponent,
-    ShowPushBackPipe
+    ShowPushBackPipe,
+    CustomerImageComponent
   ],
   imports: [
     BrowserModule,

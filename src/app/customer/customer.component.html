@@ -1,7 +1,7 @@
 <div id="customer"
      class="ui card card--customer">
   <div class="content">
-    <img class="right floated mini ui image" src="/assets/images/avatar/large/elliot.jpg">
+    <customer-image></customer-image>
     <div class="header">
       {{ name }}
     </div>
@@ -15,7 +15,8 @@
         [selectedProduct]="product">
       </product-list>
     </div>
-    <div class="product" *ngIf="status === 'served'">
+    <div class="product"
+         *ngIf="status === 'served'">
       <p> {{ product.name }} </p>
     </div>
     <div>

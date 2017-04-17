@@ -95,6 +95,7 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [X] Use a Pipe to replace the parsing function to show the Push back button
 * [X] Use `ReplaySubject` in the CustomersServed.component
 * [X] Use the `ReplaySubject` for the Products in the New Customer component
+* [X] UI - Add more random images or something more generic
 * [ ] Move all the Observables to a single Data Service
 * [ ] Improve UI that shows the time
 * [ ] Get the prod to do a Live reload
@@ -111,7 +112,6 @@ For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com
 * [ ] Sort Customer Add form out (Make fields required etc)
 * [ ] Add validators to the form
 * [ ] Customer - Add Call Back functionality
-* [ ] UI - Add more random images or something more generic
 
 ##
 
