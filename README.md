@@ -1,34 +1,29 @@
 # Ng2SimpleQueue
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.18.
+A basic Queueing app using Angular.
 
+Based on the [Qudini Front End Test](https://github.com/qudini/front-end-test)
 
 ## Serving using Node.js
+
 
 The project was intended to use an existing `node.js` setup to handle the backend work. Setting this up was a little trickier than what I would have liked.
 
 I followed the instructions from [setup-angular-2-nodejs-structure-angular-cli-express](http://www.javascripthtml.com/setup-angular-2-nodejs-structure-angular-cli-express/) to set up the Node server
 
 
-## Notes
-
-I'm using [Semantic UI](http://semantic-ui.com/) as I having some issues using Bootstrap and it is the same CSS framewoek as used in the NG-2 book.
-
-Based on the [Qudini Front End Test](https://github.com/qudini/front-end-test)
-
 ## Libraries
 
 I'm trying to use my typical libraries to make life easier ( but easier isn't always straightforward! )
 
+### Semantic UI
+
+I'm using [Semantic UI](http://semantic-ui.com/) as I having some issues using Bootstrap and it is the same CSS framewoek as used in the NG-2 book.
+
 ### Moment.js
 
 I've use [angular2-moment](https://github.com/urish/angular2-moment), I was able to use the `pipes` but I couldn't workout how to use Moment.js within the component to verify a valid date
-
-### Immutable.js
-
-See [immutable-js](http://ricostacruz.com/cheatsheets/immutable-js.html).
-
-Using the `List` Object, will see how else to use this library.
+.
 
 
 ## Build Process
@@ -143,11 +138,6 @@ Using some of the new features of ES6. Like [set](https://developer.mozilla.org/
 
 
 
-##
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
 ## Running unit tests
 
@@ -158,10 +148,5 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 Before running the tests make sure you are serving the app via `ng serve`.
 
-
-
 Run `ng github-pages:deploy` to deploy to Github Pages.
 
-## Further help
-
-To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
