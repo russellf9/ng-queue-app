@@ -23,9 +23,9 @@ export class ProductListComponent implements OnInit {
   }
 
   //noinspection JSUnusedGlobalSymbols
-  ngOnChanges( changes : {[ propName: string]:  SimpleChange }) {
+  ngOnChanges( changes : {[ propName: string]: SimpleChange }) {
     for (let propName in changes) {
-      if (propName === 'products' && this.products && this.products.length) {
+      if (propName === 'products' && this.products.length) {
         this.selectedItem = this.selectedProduct;
       }
       if (propName === 'selectedProduct') {

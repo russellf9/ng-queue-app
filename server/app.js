@@ -193,6 +193,7 @@ function getCustomerIndex(customer) {
 function insertItem(array, index, item) {
   array.splice(index, 0, item);
 }
+
 // ==== HANDLE REQUESTS ====
 
 app.get('/api/customers', (req, res) => {

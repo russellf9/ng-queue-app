@@ -36,22 +36,12 @@ Using the `List` Object, will see how else to use this library.
 The following commands create the build files in a `dist` directory, and serve the app
 The node server isn't refreshed automatically so has to be refreshed manually.
 
-
-
-```
-
-ng build --watch
-
-
-```
+`ng build --watch`
 
 In another CLI tab
 
-```
+`npm run serve`
 
-npm run serve
-
-```
 
 Navigate to `http://localhost:3000/`
 
@@ -59,6 +49,40 @@ Navigate to `http://localhost:3000/`
 ## Use the Angular CLI!
 
 For a good guide see: [ultimate-angular-cli-reference](https://www.sitepoint.com/ultimate-angular-cli-reference/)
+
+
+## Features
+
+* Using Webstorm with the Angular plugin which allows very effective use of the IDE
+* The Angular CLI is used to add new elements to the app
+* Backend using `socket.io`
+For bi-directional communication between the web client and the server this allows the front-end to be updated in real time.
+* I have used Inheritance, this is fine as long as the chain doesn't is kept to a single parent.
+* The use of Interfaces is common now in Angular where parts of libraries are used:
+`implements OnInit, OnDestroy`
+Example <pre>StatsComponent extends AbstractComponent</pre>
+* Change Detection
+For the view to be notified that it needs to be redrawn there are a variety of strategies for Angular. I've used [ChangeDetectorRef](https://angular.io/api/core/ChangeDetectorRef)
+* I have a single Angular Service which is responsible for HTTP calls = `CustomerService`
+ This looks very neat.
+* Typing
+ Generally the objects are all typed. (We could go further and type for instance the Product
+ 
+* Using Observables - `ReplaySubject`, which means that once the front-end Component Subscibes it is updated as soon as the data changes.
+* ES6
+Using some of the new features of ES6. Like [set](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Set)
+ 
+```
+  union(a:Array<any>, b:Array<any>) {
+        var setA = new Set(a);
+        var setB = new Set(b);
+        let union = new Set([a, b]);
+        return Array.from(union);
+      }
+```
+* Angular stability, originally the project was very frustrating as there seemned to be a breaking change each time I worked on the project. Now it is very stable.
+* I did have an Issue with `import {Observable} from "rxjs/Observable";` I believe it was picking up the wrong import and failing everything.
+
 
 ## Tasks
 

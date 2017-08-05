@@ -1,10 +1,9 @@
 import {Component, Input, Output, EventEmitter, ChangeDetectorRef, ChangeDetectionStrategy} from "@angular/core";
-import {Observable} from "rxjs/Observable";
 import {CustomerService} from "./customer.service";
 import {Product} from "../product/product.model";
 import {ProductService} from "../product/product.service";
-
-import * as moment from 'moment';
+import * as moment from "moment";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-customer',
@@ -48,6 +47,7 @@ export class CustomerComponent {
   // ==== ACTIONS ====
 
   updateProduct = function (product):void {
+    //noinspection TypeScriptUnresolvedVariable
     var customer = {
       id: this.id,
       name: this.name,
